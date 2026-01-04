@@ -1,0 +1,68 @@
+#######################################################
+# 1. C# / .NET CORE BUILD FILES (Esențial)
+#######################################################
+# Folderele generate la compilare
+[Bb]in/
+[Oo]bj/
+
+# Pachete NuGet (nu le urcam, se descarca automat la restore)
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+# Test results
+TestResults/
+*.trhx
+
+#######################################################
+# 2. VISUAL STUDIO (IDE)
+#######################################################
+# Folder ascuns cu setari locale VS
+.vs/
+# Fisere user-specific (setari ferestre, breakpoint-uri locale)
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+#######################################################
+# 3. JETBRAINS RIDER (IDE)
+#######################################################
+# Folderul de setari Rider
+.idea/
+# Fisiere specifice Rider ignorate
+*.sln.iml
+# Setari personale (care nu trebuie partajate)
+*.DotSettings.user
+
+#######################################################
+# 4. VISUAL STUDIO CODE (IDE)
+#######################################################
+# Folderul de setari locale VS Code
+.vscode/
+# Daca vreti sa partajati setari de echipa (tasks.json), 
+# sterge linia de mai sus si decomenteaza liniile de mai jos:
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
+#######################################################
+# 5. OS FILES (Windows / Mac)
+#######################################################
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+#######################################################
+# 6. CONFIGURARE & SECRETE (Foarte Important!)
+#######################################################
+# Fisierul de setari pentru Development (contine secrete locale)
+appsettings.Development.json
+
+# Fisiere de Environment
+.env
+
+# Crash logs
+*.log
