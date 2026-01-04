@@ -1,6 +1,6 @@
 ﻿// Cod creat ca exemplu pt Unit Testing
 
-namespace App;
+namespace SistemRezervari.CORE.BookingLogic;
 
 public class PersoanaTest : IPersoana
 {

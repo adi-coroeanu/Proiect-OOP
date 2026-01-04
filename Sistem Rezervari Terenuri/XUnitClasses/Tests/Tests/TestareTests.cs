@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-using App;
+using SistemRezervari.CORE.BookingLogic;
 using Moq;
 
 public class TestareTests

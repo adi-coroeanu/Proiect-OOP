@@ -23,6 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\App\App\App\App.csproj" />
+      <ProjectReference Include="..\..\..\SistemRezervari.CORE\SistemRezervari.CORE\SistemRezervari.CORE.csproj" />
     </ItemGroup>
 
 </Project>
