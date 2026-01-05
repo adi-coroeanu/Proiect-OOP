@@ -6,5 +6,9 @@ public interface IAdministrareService
 	public void AddField();
 	public void RemoveField();
 	public void ModifyField();
+	public void ModifyReservation();
+	public void VisualizeRezervations();
+	
+	//FISIER DE STERS
 
 }
