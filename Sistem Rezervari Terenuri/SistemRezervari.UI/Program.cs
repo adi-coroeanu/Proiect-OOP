@@ -21,7 +21,9 @@ static class Program
                 services.AddTransient<IAdministrareService, FakeService>();
 
                 // Inregistram formularul
-                services.AddTransient<AdminForm>(); 
+                services.AddTransient<AdminForm>();
+                services.AddTransient<LogInForm>(); 
+                services.AddTransient<ClientForm>();
 
                 services.AddLogging(configure => configure.AddConsole());
             })
@@ -29,7 +31,7 @@ static class Program
 
         try 
         {
-            var mainForm = host.Services.GetRequiredService<AdminForm>();
+            var mainForm = host.Services.GetRequiredService<LogInForm>();
             Application.Run(mainForm);
         }
         catch (Exception ex)

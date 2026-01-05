@@ -13,10 +13,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Client.cs">
+      <Compile Update="ClientForm.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="Logging.cs">
+      <Compile Update="LogInForm.cs">
         <SubType>Form</SubType>
       </Compile>
     </ItemGroup>
@@ -25,6 +25,10 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />
       <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Images\" />
     </ItemGroup>
 
 </Project>

@@ -18,6 +18,16 @@ public class FakeService : IAdministrareService
         MessageBox.Show("Teren sters cu succes!");
     }
 
+    public void ModifyReservation()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void VisualizeRezervations()
+    {
+        throw new NotImplementedException();
+    }
+
     public void ModifyField()
     {
         throw new NotImplementedException();
