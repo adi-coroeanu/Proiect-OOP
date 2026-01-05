@@ -1,6 +1,6 @@
 namespace SistemRezervari.CORE.Interfaces;
 
-public class IFileRepository
+public interface IFileRepository
 {
     
 }

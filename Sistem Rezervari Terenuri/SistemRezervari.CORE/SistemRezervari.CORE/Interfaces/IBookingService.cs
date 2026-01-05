@@ -1,6 +1,6 @@
 namespace SistemRezervari.CORE.Interfaces;
 
-public class IBookingService
+public interface IBookingService
 {
     
 }
