@@ -3,7 +3,7 @@ using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.AdministrationLogic;
 
-public class FieldAdministration : IFieldService
+public class FieldAdministration : IAdministrareService
 {
 
     private List<Teren> _fields;
@@ -144,5 +144,16 @@ public class FieldAdministration : IFieldService
                 break;
         }
     }
+
+    public void ModifyReservation()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void VisualizeRezervations()
+    {
+        throw new NotImplementedException();
+    }
+
     #endregion
 }
