@@ -33,8 +33,8 @@ partial class LogInForm
     {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogInForm));
         tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-        textBox1 = new System.Windows.Forms.TextBox();
-        textBox2 = new System.Windows.Forms.TextBox();
+        txtUser = new System.Windows.Forms.TextBox();
+        txtPass = new System.Windows.Forms.TextBox();
         btnLogIn = new System.Windows.Forms.Button();
         labelPass = new System.Windows.Forms.Label();
         labelUser = new System.Windows.Forms.Label();
@@ -47,8 +47,8 @@ partial class LogInForm
         tableLayoutPanel1.ColumnCount = 2;
         tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.25F));
         tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 62.75F));
-        tableLayoutPanel1.Controls.Add(textBox1, 1, 0);
-        tableLayoutPanel1.Controls.Add(textBox2, 1, 1);
+        tableLayoutPanel1.Controls.Add(txtUser, 1, 0);
+        tableLayoutPanel1.Controls.Add(txtPass, 1, 1);
         tableLayoutPanel1.Controls.Add(btnLogIn, 1, 2);
         tableLayoutPanel1.Controls.Add(labelPass, 0, 1);
         tableLayoutPanel1.Controls.Add(labelUser, 0, 0);
@@ -62,22 +62,22 @@ partial class LogInForm
         tableLayoutPanel1.Size = new System.Drawing.Size(800, 310);
         tableLayoutPanel1.TabIndex = 0;
         // 
-        // textBox1
+        // txtUser
         // 
-        textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left));
-        textBox1.Location = new System.Drawing.Point(301, 78);
-        textBox1.Name = "textBox1";
-        textBox1.Size = new System.Drawing.Size(196, 23);
-        textBox1.TabIndex = 0;
+        txtUser.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left));
+        txtUser.Location = new System.Drawing.Point(301, 78);
+        txtUser.Name = "txtUser";
+        txtUser.Size = new System.Drawing.Size(196, 23);
+        txtUser.TabIndex = 0;
         // 
-        // textBox2
+        // txtPass
         // 
-        textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left));
-        textBox2.Location = new System.Drawing.Point(301, 125);
-        textBox2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 60);
-        textBox2.Name = "textBox2";
-        textBox2.Size = new System.Drawing.Size(196, 23);
-        textBox2.TabIndex = 1;
+        txtPass.Anchor = ((System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left));
+        txtPass.Location = new System.Drawing.Point(301, 125);
+        txtPass.Margin = new System.Windows.Forms.Padding(3, 3, 3, 60);
+        txtPass.Name = "txtPass";
+        txtPass.Size = new System.Drawing.Size(196, 23);
+        txtPass.TabIndex = 1;
         // 
         // btnLogIn
         // 
@@ -89,6 +89,7 @@ partial class LogInForm
         btnLogIn.TabIndex = 2;
         btnLogIn.Text = "Log In";
         btnLogIn.UseVisualStyleBackColor = true;
+        btnLogIn.Click += btnLogIn_Click;
         // 
         // labelPass
         // 
@@ -120,7 +121,7 @@ partial class LogInForm
         BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
         ClientSize = new System.Drawing.Size(800, 450);
         Controls.Add(tableLayoutPanel1);
-        Text = "Logging";
+        Text = "RegisterPage";
         tableLayoutPanel1.ResumeLayout(false);
         tableLayoutPanel1.PerformLayout();
         ResumeLayout(false);
@@ -132,9 +133,9 @@ partial class LogInForm
 
     private System.Windows.Forms.Button btnLogIn;
 
-    private System.Windows.Forms.TextBox textBox2;
+    private System.Windows.Forms.TextBox txtPass;
 
-    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.TextBox txtUser;
 
     private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 

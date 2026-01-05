@@ -19,7 +19,7 @@ static class Program
             {
                 // Folosim FakeService pana termina colegii
                 services.AddTransient<IAdministrareService, FakeService>();
-
+                services.AddTransient<IAutentificareService, MockLogIn>();
                 // Inregistram formularul
                 services.AddTransient<AdminForm>();
                 services.AddTransient<LogInForm>(); 
