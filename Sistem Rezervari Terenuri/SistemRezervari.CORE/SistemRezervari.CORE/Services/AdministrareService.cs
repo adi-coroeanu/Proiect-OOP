@@ -7,21 +7,16 @@ namespace SistemRezervari.CORE.Services;
 
 public class AdministrareService: IAdministrareService
 {
-    private List<Rezervare> _reservations;
-    private List<Teren> _fields;
     private ReservationRepository _reservationRepository;
     private FieldRepository _fieldRepository;
     private FieldAdministration _fieldAdministration;
     private ReservationAdministration _reservationAdministration;
     
-    public AdministrareService()
+    public AdministrareService(ReservationRepository reservationRepository,FieldRepository fieldRepository)
     {
-        _reservations = new List<Rezervare>();
-        _reservationRepository = new ReservationRepository(_reservations);
-
-        _fields = new List<Teren>();
-        _fieldRepository = new FieldRepository(_fields);                //astea trebuie neaparat primite prin constructor pentru a face
-                                                                        // aceeasi referinta!!
+      
+        _reservationRepository = reservationRepository;
+        _fieldRepository = fieldRepository;                
         
         _fieldAdministration = new FieldAdministration(_fieldRepository);
         _reservationAdministration = new ReservationAdministration(_reservationRepository);
