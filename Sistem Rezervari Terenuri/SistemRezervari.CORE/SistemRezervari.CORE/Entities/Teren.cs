@@ -6,7 +6,6 @@ public record Teren(
     string TipSport,
     int Capacitate,
     string program_de_functionare,
-    string intervale_indisponibile,
-    bool EsteActiv
+    string intervale_indisponibile
     
 );

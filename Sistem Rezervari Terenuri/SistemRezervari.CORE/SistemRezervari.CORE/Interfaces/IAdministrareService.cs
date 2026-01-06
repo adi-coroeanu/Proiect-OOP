@@ -5,7 +5,7 @@ namespace SistemRezervari.CORE.Interfaces;
 public interface IAdministrareService
 {
     //metode la Teren
-	public void AddField(string name,string type,string capacity,string program);
+	public void AddField(string name,string type,int capacity,string program);
 	public void RemoveField(Guid terenId);
 	public List<Teren> GetAllFields();
 	public Teren GetFieldById(Guid terenId);

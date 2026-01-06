@@ -1,150 +1,101 @@
-﻿using SistemRezervari.CORE.Entities;
+﻿using SistemRezervari.CORE.Data;
+using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.AdministrationLogic;
 
-public class FieldAdministration :IFieldAdministration
+public class FieldAdministration : IFieldAdministration
 {
 
     private List<Teren> _fields;
+    private FieldRepository _fieldRepository;
 
-    public FieldAdministration(List<Teren> fields)
+    public FieldAdministration(FieldRepository fieldRepository)
     {
-        _fields = fields;
+        _fieldRepository = fieldRepository;
+        _fields = _fieldRepository.GetCopyAll();
     }
 
-    
-    
+
+
     #region Private Methods
-    private void _AddField(string name, string tip_sport,int capacity,string program_de_functionare,string intervale_indisponibile,bool esteActiv)
+
+    private void _AddField(string name, string type, int capacity, string program)
     {
-        _fields.Add(new Teren(Guid.NewGuid(), name, tip_sport,capacity,program_de_functionare,intervale_indisponibile,esteActiv));
+        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program, ""));
     }
 
-    private void _RemoveField(string name)
+    private void _RemoveField(Guid fieldId)
     {
-        for(int i = 0; i < _fields.Count; i++)
+        for (int i = 0; i < _fields.Count; i++)
         {
-            if(_fields[i].Nume == name)
+            if (_fields[i].Id == fieldId)
                 _fields.RemoveAt(i);
         }
     }
-    
-    private void Case_1_met(Guid rezervation_param, int pozition)
-    {
-        for (int i = 0; i <= _fields.Count; i++)
-            if (i == pozition)
-            {
-                var old_field = _fields[i];
-                var new_field = old_field with { Id = rezervation_param };
-                _fields[i] = new_field;
-            }
-    }
-    
-    private void Case_2_met(string rezervation_param, int pozition)
-    {
-        for (int i = 0; i <= _fields.Count; i++)
-            if (i == pozition)
-            {
-                var old_field = _fields[i];
-                var new_field = old_field with { Nume = rezervation_param };
-                _fields[i] = new_field;
-            }
-    }
-    
-    private void Case_3_met(string rezervation_param, int pozition)
-    {
-        for (int i = 0; i <= _fields.Count; i++)
-            if (i == pozition)
-            {
-                var old_field = _fields[i];
-                var new_field = old_field with { TipSport = rezervation_param };
-                _fields[i] = new_field;
-            }
-    }
-    
-    private void Case_4_met(int rezervation_param, int pozition)
-    {
-        for (int i = 0; i <= _fields.Count; i++)
-            if (i == pozition)
-            {
-                var old_field = _fields[i];
-                var new_field = old_field with { Capacitate = rezervation_param };
-                _fields[i] = new_field;
-            }
-    }
-    
-    private void Case_5_met(string rezervation_param, int pozition)
-    {
-        for (int i = 0; i <= _fields.Count; i++)
-            if (i == pozition)
-            {
-                var old_field = _fields[i];
-                var new_field = old_field with { program_de_functionare = rezervation_param };
-                _fields[i] = new_field;
-            }
-    }
-    
-    private void Case_6_met(string rezervation_param, int pozition)
-    {
-        for (int i = 0; i <= _fields.Count; i++)
-            if (i == pozition)
-            {
-                var old_field = _fields[i];
-                var new_field = old_field with { intervale_indisponibile = rezervation_param };
-                _fields[i] = new_field;
-            }
-    }
-   #endregion 
-    
-    #region Public Methods
-    public void AddField(string name, string tip_sport,int capacity,string program_de_functionare,string intervale_indisponibile,bool esteActiv)
-    {
-        _AddField(name,tip_sport,capacity,program_de_functionare,intervale_indisponibile,esteActiv);
-    }
-    
 
-    public void RemoveField(string name)
+    private Teren _GetFieldById(Guid fieldId)
     {
-        _RemoveField(name);
+        return _fields.FirstOrDefault(x => x.Id == fieldId);
     }
-    
 
-    public void ModifyField(int option, object rezervation_param, int pozition)
+
+
+    private void _ModifyField(Guid terenId, string newFieldName, string newFieldType, int newFieldCapacity,
+        string newFieldProgram, string newFieldRestrictions)
     {
-        switch (option)
+        foreach (var field in _fields)
         {
-            case 1:
-               Case_1_met((Guid)rezervation_param, pozition);
+            if (field.Id == terenId)
+            {
+                var newfield = field with
+                {
+                    Nume = newFieldName,
+                    TipSport = newFieldType,
+                    Capacitate = newFieldCapacity,
+                    intervale_indisponibile = newFieldRestrictions,
+                    program_de_functionare = newFieldProgram
+                };
                 break;
-            
-            case 2:
-                Case_2_met((string)rezervation_param, pozition);
-                break;
-            
-            case 3:
-                Case_3_met((string)rezervation_param, pozition);
-                break;
-            
-            case 4:
-                Case_4_met((int)rezervation_param, pozition);
-                break;
-            
-            case 5:
-                Case_5_met((string)rezervation_param, pozition);
-                break;
-            
-            case 6:
-                Case_6_met((string)rezervation_param, pozition);
-                break;
-            
-            default:
-                break;
+            }
         }
     }
 
-   
-    
-
     #endregion
-}
+
+    #region Public Methods
+
+        public void AddField(string name, string type, int capacity, string program)
+        {
+            _AddField(name, type, capacity, program);
+            _fieldRepository.ModifyList(_fields);
+        }
+
+
+        public void RemoveField(Guid fieldId)
+        {
+            _RemoveField(fieldId);
+            _fieldRepository.ModifyList(_fields);
+        }
+
+        public Teren GetFieldById(Guid terenId)
+        {
+            return _GetFieldById(terenId);
+        }
+
+        public List<Teren> GetAllFields()
+        {
+            return _fields;
+        }
+
+
+        public void ModifyField(Guid terenId, string newFieldName, string newFieldType, int newFieldCapacity,
+            string newFieldProgram, string newFieldRestrictions)
+        {
+            _ModifyField(terenId,  newFieldName,  newFieldType, newFieldCapacity, newFieldProgram, newFieldRestrictions);
+            _fieldRepository.ModifyList(_fields);
+        }
+
+
+        #endregion
+    }

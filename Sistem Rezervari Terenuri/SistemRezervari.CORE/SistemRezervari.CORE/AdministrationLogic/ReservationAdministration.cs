@@ -1,46 +1,34 @@
-﻿using SistemRezervari.CORE.Entities;
+﻿using SistemRezervari.CORE.Data;
+using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.AdministrationLogic;
 
 public class ReservationAdministration : IReservationAdministration
 {
+    private ReservationRepository _reservationRepository;
     private List<Rezervare> _reservations;
-
-    public ReservationAdministration(List<Rezervare> reservations)
+    public ReservationAdministration(ReservationRepository  reservationRepository)
     {
-        _reservations = reservations;
+       _reservationRepository = reservationRepository; 
+       _reservations = _reservationRepository.GetCopyAll();
     }
 
-    public Rezervare ModifyStandardLength(int Length,Rezervare reservation)
-    {
-        var new_reservation = reservation with {durata_standard = Length};
-        return new_reservation;
-    }
-
-    public Rezervare Modify_begin_end_date(DateTime begin_date, DateTime end_date, Rezervare reservation)
-    {
-        var new_reservation = reservation with {DataInceput = begin_date, DataSfarsit = end_date};
-        return new_reservation;
-    }
-
-    public Rezervare Modify_nr(int nr, Rezervare reservation)
-    {
-        var new_reservation = reservation with {nr_max_rezervare = nr};
-        return new_reservation;
-    }
-    
-    
-    
-    
-    
-    public void ModifyReservation()
+    #region Public Methods
+    public void RemoveReservation(Guid reservationId)
     {
         throw new NotImplementedException();
     }
 
-    public void VisualizeRezervations()
+    public void ModifyReservation(Guid reservationId, DateTime from, DateTime to)
     {
         throw new NotImplementedException();
     }
+
+    
+    public List<Rezervare> GetAllReservations(Guid terenId)
+    {
+        return _reservations;
+    }
+   #endregion
 }

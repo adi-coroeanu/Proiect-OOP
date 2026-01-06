@@ -21,4 +21,8 @@ public class FieldRepository : IRepository<Teren>
     {
         return new List<Teren>(_fields);
     }
+    public void ModifyList(List<Teren> value)
+    {
+        _fields = value;
+    }
 }

@@ -1,10 +1,14 @@
-﻿namespace SistemRezervari.CORE.Interfaces;
+﻿using SistemRezervari.CORE.Entities;
+
+namespace SistemRezervari.CORE.Interfaces;
 
 public interface IFieldAdministration
 {
-    public void AddField(string name, string tip_sport, int capacity,string program_de_functionare,string intervale_indisponibile,bool esteActiv);
-    public void RemoveField(string name);
-    public void ModifyField(int  option, object rezervation_param, int pozition);
+    public void AddField(string name,string type,int capacity,string program);
+    public void RemoveField(Guid terenId);
+    public List<Teren> GetAllFields();
+    public Teren GetFieldById(Guid terenId);
+    public void ModifyField(Guid terenId,string newFieldName, string newFieldType, int newFieldCapacity, string newFieldProgram,string newFieldRestrictions);
     
 
 }

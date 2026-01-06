@@ -1,8 +1,9 @@
 ﻿using SistemRezervari.CORE.Entities;
+using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.Data;
 
-public class UserRepository
+public class UserRepository : IRepository<Utilizator>
 {
     private List<Utilizator> _users;
     
