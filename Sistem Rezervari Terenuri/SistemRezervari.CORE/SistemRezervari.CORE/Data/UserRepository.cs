@@ -3,7 +3,7 @@ using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.Data;
 
-public class UserRepository : IRepository<Utilizator>
+public class UserRepository  
 {
     private List<Utilizator> _users;
     
