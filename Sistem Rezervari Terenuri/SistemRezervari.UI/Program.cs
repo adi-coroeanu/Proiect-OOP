@@ -19,9 +19,11 @@ static class Program
             {
                 // Folosim FakeService pana termina colegii
                 services.AddTransient<IAdministrareService, FakeService>();
-
+                services.AddTransient<IAutentificareService, MockLogIn>();
                 // Inregistram formularul
-                services.AddTransient<AdminForm>(); 
+                services.AddTransient<AdminForm>();
+                services.AddTransient<LogInForm>(); 
+                services.AddTransient<ClientForm>();
 
                 services.AddLogging(configure => configure.AddConsole());
             })
@@ -29,7 +31,7 @@ static class Program
 
         try 
         {
-            var mainForm = host.Services.GetRequiredService<AdminForm>();
+            var mainForm = host.Services.GetRequiredService<LogInForm>();
             Application.Run(mainForm);
         }
         catch (Exception ex)
