@@ -1,13 +1,17 @@
+using SistemRezervari.CORE.Entities;
+
 namespace SistemRezervari.CORE.Interfaces;
 
 public interface IAdministrareService
 {
-    //metode precum void Adaugare(), Stegere(),Vizualizare() etc etc
-    public void AddField(string name, string tip_sport, int capacity,string program_de_functionare,string intervale_indisponibile,bool esteActiv);
-    public void RemoveField(string name);
-    public void ModifyField(int  option, object rezervation_param, int pozition);
-	public void ModifyReservation();
-	public void VisualizeRezervations();
-	
-
+    //metode la Teren
+	public void AddField(string name,string type,string capacity,string program);
+	public void RemoveField(Guid terenId);
+	public List<Teren> GetAllFields();
+	public Teren GetFieldById(Guid terenId);
+	public void ModifyField(Guid terenId,string newFieldName, string newFieldType, int newFieldCapacity, string newFieldProgram,string newFieldRestrictions);
+	//metode la Rezervari
+	public void RemoveReservation(Guid reservationId);
+	public void ModifyReservation(Guid reservationId, DateTime from, DateTime to);//parametrii vor contine noile date ale unei rezervari
+	public List<Rezervare> GetAllReservations(Guid terenId);
 }
