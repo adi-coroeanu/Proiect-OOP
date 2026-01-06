@@ -6,5 +6,6 @@ public record Rezervare(
     Guid UtilizatorId,   
     DateTime DataInceput,
     DateTime DataSfarsit,
-    int nr_max_rezervare
+    int nr_max_rezervare,
+    int durata_standard
 );
