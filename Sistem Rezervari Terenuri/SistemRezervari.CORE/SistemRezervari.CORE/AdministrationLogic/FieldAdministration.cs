@@ -3,16 +3,14 @@ using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.AdministrationLogic;
 
-public class FieldAdministration : IAdministrareService
+public class FieldAdministration :IFieldAdministration
 {
 
     private List<Teren> _fields;
-    private List<Rezervare> _reservations;
 
-    public FieldAdministration(List<Teren> fields, List<Rezervare> reservations)
+    public FieldAdministration(List<Teren> fields)
     {
         _fields = fields;
-        _reservations = reservations;
     }
 
     

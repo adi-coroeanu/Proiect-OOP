@@ -6,5 +6,5 @@ public record Rezervare(
     Guid UtilizatorId,   
     DateTime DataInceput,
     DateTime DataSfarsit,
-    bool EsteAnulata     
+    int nr_max_rezervare
 );
