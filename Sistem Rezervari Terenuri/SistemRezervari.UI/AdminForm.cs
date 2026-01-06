@@ -17,6 +17,6 @@ public partial class AdminForm : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        _administrareService.AddField();
+        
     }
 }
