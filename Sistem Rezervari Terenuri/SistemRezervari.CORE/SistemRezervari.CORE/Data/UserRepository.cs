@@ -21,4 +21,8 @@ public class UserRepository : IRepository<Utilizator>
     {
         return new List<Utilizator>(_users);
     }
+    public void ModifyList(List<Utilizator> value)
+    {
+        _users = value;
+    }
 }
