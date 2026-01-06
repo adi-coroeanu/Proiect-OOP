@@ -143,15 +143,8 @@ public class FieldAdministration :IFieldAdministration
         }
     }
 
-    public void ModifyReservation()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void VisualizeRezervations()
-    {
-        throw new NotImplementedException();
-    }
+   
+    
 
     #endregion
 }
