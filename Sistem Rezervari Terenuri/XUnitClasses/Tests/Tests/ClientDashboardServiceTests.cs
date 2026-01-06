@@ -1,0 +1,45 @@
+﻿using Moq;
+using SistemRezervari.CORE.BookingLogic.Services;
+using SistemRezervari.CORE.Entities;
+using SistemRezervari.CORE.Interfaces;
+
+namespace Tests;
+
+public class ClientDashboardServiceTests
+{
+    [Fact]
+    public void GetUserReservations_Reservations_ListReservations()
+    {
+        var targetedUserId = Guid.NewGuid();
+
+        var clientDashboardService = MockedClientDashboardService(targetedUserId);
+        
+        Assert.Equal(2, clientDashboardService.GetUserReservations(targetedUserId).Count);
+    }
+
+    [Fact]
+    public void GetUserReservations_NoReservations_EmptyList()
+    {
+        var clientDashboardService = MockedClientDashboardService(Guid.NewGuid());
+        
+        Assert.Empty(clientDashboardService.GetUserReservations(Guid.NewGuid()));
+    }
+    
+
+    private ClientDashboardService MockedClientDashboardService(Guid targetedUserId)
+    {
+        var mockedReservationList = new List<Rezervare>
+        {
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), targetedUserId, DateTime.Now, DateTime.Now.AddHours(1), 0, 0),
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), targetedUserId, DateTime.Now, DateTime.Now.AddHours(1), 0, 0),
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, DateTime.Now.AddHours(1), 0, 0),
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, DateTime.Now.AddHours(1), 0, 0)
+        };
+        
+        var mockReservationRepo = new Mock<IRepository<Rezervare>>();
+        
+        mockReservationRepo.Setup(repo => repo.GetCopyAll()).Returns(mockedReservationList);
+        
+        return new ClientDashboardService(mockReservationRepo.Object);
+    }
+}

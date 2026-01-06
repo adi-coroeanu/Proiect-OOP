@@ -9,13 +9,13 @@ public class BookingService : IBookingService
     private ReservationRepository _reservationRepository;
     private FieldRepository _fieldRepository;
     private UserRepository _userRepository;
-    public BookingService(ReservationRepository reservationRepo, FieldRepository fieldRepo, UserRepository userRepo)
+    public BookingService(ReservationRepository reservationRepository, FieldRepository fieldRepository, UserRepository userRepository)
     {
         try
         {
-            _reservationRepository = reservationRepo;
-            _fieldRepository = fieldRepo;
-            _userRepository = userRepo;
+            _reservationRepository = reservationRepository;
+            _fieldRepository = fieldRepository;
+            _userRepository = userRepository;
         }
         catch (Exception e)
         {
