@@ -48,7 +48,7 @@ public class FieldAdministration : IFieldAdministration
         bool ok = true;
         string pattern_newFieldProgram = @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]-([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
         List<string> programs = newFieldRestrictions.Split(",",StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
-        if (Regex.IsMatch(newFieldProgram, pattern_newFieldProgram))
+        if (Regex.IsMatch(newFieldProgram, pattern_newFieldProgram))    
         {
             foreach (string program in programs)
                 if (!Regex.IsMatch(program, pattern_newFieldProgram))

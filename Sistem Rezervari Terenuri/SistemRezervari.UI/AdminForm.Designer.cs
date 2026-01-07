@@ -38,6 +38,9 @@ partial class AdminForm
         textBox5 = new System.Windows.Forms.TextBox();
         textBox6 = new System.Windows.Forms.TextBox();
         button2 = new System.Windows.Forms.Button();
+        textBox7 = new System.Windows.Forms.TextBox();
+        button3 = new System.Windows.Forms.Button();
+        btnModify = new System.Windows.Forms.Button();
         SuspendLayout();
         // 
         // button1
@@ -59,6 +62,7 @@ partial class AdminForm
         listBox1.Name = "listBox1";
         listBox1.Size = new System.Drawing.Size(271, 229);
         listBox1.TabIndex = 2;
+        listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
         // 
         // textBox1
         // 
@@ -112,11 +116,42 @@ partial class AdminForm
         button2.UseVisualStyleBackColor = true;
         button2.Click += button2_Click;
         // 
+        // textBox7
+        // 
+        textBox7.Location = new System.Drawing.Point(346, 217);
+        textBox7.Name = "textBox7";
+        textBox7.Size = new System.Drawing.Size(129, 23);
+        textBox7.TabIndex = 10;
+        // 
+        // button3
+        // 
+        button3.Location = new System.Drawing.Point(642, 169);
+        button3.Name = "button3";
+        button3.Size = new System.Drawing.Size(132, 42);
+        button3.TabIndex = 11;
+        button3.Text = "Remove Field";
+        button3.UseVisualStyleBackColor = true;
+        button3.Click += button3_Click;
+        // 
+        // btnModify
+        // 
+        btnModify.Enabled = false;
+        btnModify.Location = new System.Drawing.Point(647, 226);
+        btnModify.Name = "btnModify";
+        btnModify.Size = new System.Drawing.Size(126, 42);
+        btnModify.TabIndex = 12;
+        btnModify.Text = "Modifiy";
+        btnModify.UseVisualStyleBackColor = true;
+        btnModify.Click += btnModify_Click;
+        // 
         // AdminForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(989, 464);
+        Controls.Add(btnModify);
+        Controls.Add(button3);
+        Controls.Add(textBox7);
         Controls.Add(button2);
         Controls.Add(textBox4);
         Controls.Add(textBox5);
@@ -130,6 +165,12 @@ partial class AdminForm
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.Button btnModify;
+
+    private System.Windows.Forms.Button button3;
+
+    private System.Windows.Forms.TextBox textBox7;
 
     private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.TextBox textBox2;

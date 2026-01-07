@@ -4,7 +4,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.Interfaces;
 using SistemRezervari.CORE.Services;
-using SistemRezervari.UI.MocksUI;
 using SistemRezervari.CORE.Data;
 
 namespace SistemRezervari.UI;
