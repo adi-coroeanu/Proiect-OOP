@@ -22,7 +22,7 @@ public class FieldAdministration : IFieldAdministration
 
     private void _AddField(string name, string type, int capacity, string program)
     {
-        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program, "none"));
+        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program, "none",2,60));
         
     }
 

@@ -10,10 +10,7 @@ public partial class AdminForm : Form
         InitializeComponent();
         _administrareService = administrareService;
     }
-    public AdminForm()
-    {
-        InitializeComponent();
-    }
+    
 
     private void button1_Click(object sender, EventArgs e)
     {

@@ -31,11 +31,78 @@ partial class ClientForm
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
-        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(800, 450);
-        this.Text = "Client";
+        txtStart = new System.Windows.Forms.TextBox();
+        listBox1 = new System.Windows.Forms.ListBox();
+        txtSport = new System.Windows.Forms.TextBox();
+        txtEnd = new System.Windows.Forms.TextBox();
+        button1 = new System.Windows.Forms.Button();
+        SuspendLayout();
+        // 
+        // txtStart
+        // 
+        txtStart.Location = new System.Drawing.Point(51, 61);
+        txtStart.Name = "txtStart";
+        txtStart.Size = new System.Drawing.Size(171, 23);
+        txtStart.TabIndex = 1;
+        // 
+        // listBox1
+        // 
+        listBox1.FormattingEnabled = true;
+        listBox1.ItemHeight = 15;
+        listBox1.Location = new System.Drawing.Point(428, 18);
+        listBox1.Name = "listBox1";
+        listBox1.Size = new System.Drawing.Size(235, 109);
+        listBox1.TabIndex = 3;
+        // 
+        // txtSport
+        // 
+        txtSport.Location = new System.Drawing.Point(51, 18);
+        txtSport.Name = "txtSport";
+        txtSport.Size = new System.Drawing.Size(171, 23);
+        txtSport.TabIndex = 4;
+        // 
+        // txtEnd
+        // 
+        txtEnd.Location = new System.Drawing.Point(51, 104);
+        txtEnd.Name = "txtEnd";
+        txtEnd.Size = new System.Drawing.Size(171, 23);
+        txtEnd.TabIndex = 5;
+        // 
+        // button1
+        // 
+        button1.Location = new System.Drawing.Point(56, 147);
+        button1.Name = "button1";
+        button1.Size = new System.Drawing.Size(165, 31);
+        button1.TabIndex = 6;
+        button1.Text = "button1";
+        button1.UseVisualStyleBackColor = true;
+        button1.Click += button1_Click;
+        // 
+        // ClientForm
+        // 
+        AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(button1);
+        Controls.Add(txtEnd);
+        Controls.Add(txtSport);
+        Controls.Add(listBox1);
+        Controls.Add(txtStart);
+        Text = "Client";
+        ResumeLayout(false);
+        PerformLayout();
     }
+
+    private System.Windows.Forms.TextBox txtSport;
+    private System.Windows.Forms.Button button1;
+
+    private System.Windows.Forms.TextBox txtStart;
+
+    private System.Windows.Forms.ListBox listBox1;
+
+    private System.Windows.Forms.TextBox txtEnd;
+    private System.Windows.Forms.TextBox textBox2;
+    private System.Windows.Forms.TextBox textBox3;
 
     #endregion
 }

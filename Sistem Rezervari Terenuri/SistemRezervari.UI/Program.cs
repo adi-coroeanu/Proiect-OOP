@@ -3,7 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.Interfaces;
+using SistemRezervari.CORE.Services;
 using SistemRezervari.UI.MocksUI;
+using SystemRezervari.CORE.Data;
 
 namespace SistemRezervari.UI;
 
@@ -20,6 +22,8 @@ static class Program
                 // Folosim FakeService pana termina colegii
                 services.AddTransient<IAdministrareService, FakeService>();
                 services.AddTransient<IAutentificareService, MockLogIn>();
+                services.AddTransient<IBookingService, BookingService>();
+                services.AddSingleton<IFileRepository, JsonRepository>();
                 // Inregistram formularul
                 services.AddTransient<AdminForm>();
                 services.AddTransient<LogInForm>(); 
