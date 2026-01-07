@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.Interfaces;
 using SistemRezervari.CORE.Services;
 using SistemRezervari.UI.MocksUI;
-using SystemRezervari.CORE.Data;
+using SistemRezervari.CORE.Data;
 
 namespace SistemRezervari.UI;
 
@@ -20,8 +20,8 @@ static class Program
             .ConfigureServices((context, services) =>
             {
                 // Folosim FakeService pana termina colegii
-                services.AddTransient<IAdministrareService, FakeService>();
-                services.AddTransient<IAutentificareService, MockLogIn>();
+                services.AddTransient<IAdministrareService, AdministrareService>();
+                services.AddTransient<IAutentificareService, AutentificareService>();
                 services.AddTransient<IBookingService, BookingService>();
                 services.AddSingleton<IFileRepository, JsonRepository>();
                 // Inregistram formularul

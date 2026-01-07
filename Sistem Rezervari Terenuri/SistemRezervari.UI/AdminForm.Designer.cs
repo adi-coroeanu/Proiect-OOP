@@ -31,6 +31,13 @@ partial class AdminForm
     {
         button1 = new System.Windows.Forms.Button();
         listBox1 = new System.Windows.Forms.ListBox();
+        textBox1 = new System.Windows.Forms.TextBox();
+        textBox2 = new System.Windows.Forms.TextBox();
+        textBox3 = new System.Windows.Forms.TextBox();
+        textBox4 = new System.Windows.Forms.TextBox();
+        textBox5 = new System.Windows.Forms.TextBox();
+        textBox6 = new System.Windows.Forms.TextBox();
+        button2 = new System.Windows.Forms.Button();
         SuspendLayout();
         // 
         // button1
@@ -53,16 +60,84 @@ partial class AdminForm
         listBox1.Size = new System.Drawing.Size(271, 229);
         listBox1.TabIndex = 2;
         // 
+        // textBox1
+        // 
+        textBox1.Location = new System.Drawing.Point(346, 43);
+        textBox1.Name = "textBox1";
+        textBox1.Size = new System.Drawing.Size(129, 23);
+        textBox1.TabIndex = 3;
+        // 
+        // textBox2
+        // 
+        textBox2.Location = new System.Drawing.Point(346, 72);
+        textBox2.Name = "textBox2";
+        textBox2.Size = new System.Drawing.Size(129, 23);
+        textBox2.TabIndex = 4;
+        // 
+        // textBox3
+        // 
+        textBox3.Location = new System.Drawing.Point(346, 101);
+        textBox3.Name = "textBox3";
+        textBox3.Size = new System.Drawing.Size(129, 23);
+        textBox3.TabIndex = 5;
+        // 
+        // textBox4
+        // 
+        textBox4.Location = new System.Drawing.Point(346, 130);
+        textBox4.Name = "textBox4";
+        textBox4.Size = new System.Drawing.Size(129, 23);
+        textBox4.TabIndex = 8;
+        // 
+        // textBox5
+        // 
+        textBox5.Location = new System.Drawing.Point(346, 159);
+        textBox5.Name = "textBox5";
+        textBox5.Size = new System.Drawing.Size(129, 23);
+        textBox5.TabIndex = 7;
+        // 
+        // textBox6
+        // 
+        textBox6.Location = new System.Drawing.Point(346, 188);
+        textBox6.Name = "textBox6";
+        textBox6.Size = new System.Drawing.Size(129, 23);
+        textBox6.TabIndex = 6;
+        // 
+        // button2
+        // 
+        button2.Location = new System.Drawing.Point(645, 103);
+        button2.Name = "button2";
+        button2.Size = new System.Drawing.Size(129, 49);
+        button2.TabIndex = 9;
+        button2.Text = "button2";
+        button2.UseVisualStyleBackColor = true;
+        button2.Click += button2_Click;
+        // 
         // AdminForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(989, 464);
+        Controls.Add(button2);
+        Controls.Add(textBox4);
+        Controls.Add(textBox5);
+        Controls.Add(textBox6);
+        Controls.Add(textBox3);
+        Controls.Add(textBox2);
+        Controls.Add(textBox1);
         Controls.Add(listBox1);
         Controls.Add(button1);
         Text = "Admin";
         ResumeLayout(false);
+        PerformLayout();
     }
+
+    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.TextBox textBox2;
+    private System.Windows.Forms.TextBox textBox3;
+    private System.Windows.Forms.TextBox textBox4;
+    private System.Windows.Forms.TextBox textBox5;
+    private System.Windows.Forms.TextBox textBox6;
+    private System.Windows.Forms.Button button2;
 
     private System.Windows.Forms.ListBox listBox1;
 

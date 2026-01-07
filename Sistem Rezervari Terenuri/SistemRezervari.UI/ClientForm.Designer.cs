@@ -36,6 +36,7 @@ partial class ClientForm
         txtSport = new System.Windows.Forms.TextBox();
         txtEnd = new System.Windows.Forms.TextBox();
         button1 = new System.Windows.Forms.Button();
+        dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
         SuspendLayout();
         // 
         // txtStart
@@ -49,7 +50,7 @@ partial class ClientForm
         // 
         listBox1.FormattingEnabled = true;
         listBox1.ItemHeight = 15;
-        listBox1.Location = new System.Drawing.Point(428, 18);
+        listBox1.Location = new System.Drawing.Point(344, 18);
         listBox1.Name = "listBox1";
         listBox1.Size = new System.Drawing.Size(235, 109);
         listBox1.TabIndex = 3;
@@ -78,11 +79,20 @@ partial class ClientForm
         button1.UseVisualStyleBackColor = true;
         button1.Click += button1_Click;
         // 
+        // dateTimePicker1
+        // 
+        dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+        dateTimePicker1.Location = new System.Drawing.Point(51, 216);
+        dateTimePicker1.Name = "dateTimePicker1";
+        dateTimePicker1.Size = new System.Drawing.Size(125, 23);
+        dateTimePicker1.TabIndex = 7;
+        // 
         // ClientForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(dateTimePicker1);
         Controls.Add(button1);
         Controls.Add(txtEnd);
         Controls.Add(txtSport);
@@ -92,6 +102,8 @@ partial class ClientForm
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.DateTimePicker dateTimePicker1;
 
     private System.Windows.Forms.TextBox txtSport;
     private System.Windows.Forms.Button button1;

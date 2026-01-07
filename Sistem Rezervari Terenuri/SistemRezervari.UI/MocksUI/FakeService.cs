@@ -8,7 +8,21 @@ namespace SistemRezervari.UI;
 
 public class FakeService : IAdministrareService
 {
-    
+    public void AddField(string name, string type, int capacity, string program, int nr_max_rezervari, int durata_standard)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ModifyField(Guid terenId, string newFieldName, string newFieldType, int newFieldCapacity, string newFieldProgram,
+        string newFieldRestrictions, int nr_max_rezervari, int durata_standard)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void ModifyReservation(Guid reservationId, DateTime from)
+    {
+        throw new NotImplementedException();
+    }
 
     public void RemoveField(Guid terenId)
     {

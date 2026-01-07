@@ -31,7 +31,7 @@ public partial class LogInForm : Form
               
                 this.Hide(); 
 
-                if (utilizator.Rol == "Administrator")
+                if (utilizator.Rol == "Admin")
                 {
                     // Cerem AdminForm de la Host (ca să aibă și el serviciile lui injectate)
                     var adminForm = _serviceProvider.GetRequiredService<AdminForm>();
