@@ -3,7 +3,7 @@ using SistemRezervari.CORE.AdministrationLogic;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 using SistemRezervari.CORE.Interfaces;
-using SystemRezervari.CORE.Data;
+using SistemRezervari.CORE.Data;
 namespace SistemRezervari.CORE.Services;
 
 
@@ -22,9 +22,9 @@ public class AdministrareService: IAdministrareService
         _reservationAdministration = new ReservationAdministration(_fileRepository);
     }
 
-    public void AddField(string name, string type, int capacity, string program)
+    public void AddField(string name, string type, int capacity, string program,int nr_max_rezervari, int durata_standard)
     {    
-        _fieldAdministration.AddField(name, type, capacity, program);
+        _fieldAdministration.AddField(name, type, capacity, program,nr_max_rezervari,durata_standard);
     }
 
     public void RemoveField(Guid terenId)
@@ -43,9 +43,9 @@ public class AdministrareService: IAdministrareService
     }
 
     public void ModifyField(Guid terenId, string newFieldName, string newFieldType, int newFieldCapacity,
-        string newFieldProgram, string newFieldRestrictions)
+        string newFieldProgram, string newFieldRestrictions,int nr_max_rezervari, int durata_standard)
     {
-        _fieldAdministration.ModifyField(terenId, newFieldName, newFieldType, newFieldCapacity, newFieldProgram, newFieldRestrictions);
+        _fieldAdministration.ModifyField(terenId, newFieldName, newFieldType, newFieldCapacity, newFieldProgram, newFieldRestrictions, nr_max_rezervari, durata_standard);
     }
 
     public void RemoveReservation(Guid reservationId)
@@ -53,9 +53,9 @@ public class AdministrareService: IAdministrareService
         _reservationAdministration.RemoveReservation(reservationId);
     }
 
-    public void ModifyReservation(Guid reservationId, DateTime from, DateTime to)
+    public void ModifyReservation(Guid reservationId, DateTime from)
     {
-       _reservationAdministration.ModifyReservation(reservationId, from, to);
+       _reservationAdministration.ModifyReservation(reservationId, from);
     }
 
     public List<Rezervare> GetAllReservations(Guid terenId)

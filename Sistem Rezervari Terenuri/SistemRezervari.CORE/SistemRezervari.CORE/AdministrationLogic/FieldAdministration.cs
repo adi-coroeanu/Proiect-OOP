@@ -20,7 +20,7 @@ public class FieldAdministration : IFieldAdministration
 
     #region Private Methods
 
-    private void _AddField(string name, string type, int capacity, string program)
+    private void _AddField(string name, string type, int capacity, string program,int nr_max_rezervari, int durata_standard)
     {
         _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program, "none",2,60));
         
@@ -43,7 +43,7 @@ public class FieldAdministration : IFieldAdministration
 
 
     private void _ModifyField(Guid terenId, string newFieldName, string newFieldType, int newFieldCapacity,
-        string newFieldProgram, string newFieldRestrictions)
+        string newFieldProgram, string newFieldRestrictions,int _nr_max_rezervari, int _durata_standard)
     {
         bool ok = true;
         string pattern_newFieldProgram = @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]-([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
@@ -68,7 +68,9 @@ public class FieldAdministration : IFieldAdministration
                                 TipSport = newFieldType,
                                 Capacitate = newFieldCapacity,
                                 intervale_indisponibile = newFieldRestrictions,
-                                program_de_functionare = newFieldProgram
+                                program_de_functionare = newFieldProgram,
+                                nr_max_rezervari = _nr_max_rezervari,
+                                durata_standard = _durata_standard
                             };
                             _fields[i] = newfield;
                             break;
@@ -83,34 +85,39 @@ public class FieldAdministration : IFieldAdministration
 
     #region Public Methods
 
-        public void AddField(string name, string type, int capacity, string program)
+        public void AddField(string name, string type, int capacity, string program,int nr_max_rezervari, int durata_standard)
         {
-            _AddField(name, type, capacity, program);
+            _fields = _fileRepository.IncarcaTerenuri();
+            _AddField(name, type, capacity, program, nr_max_rezervari, durata_standard);
             _fileRepository.SalveazaTerenuri(_fields);
         }
 
 
         public void RemoveField(Guid fieldId)
         {
+            _fields = _fileRepository.IncarcaTerenuri();
             _RemoveField(fieldId);
             _fileRepository.SalveazaTerenuri(_fields);
         }
 
         public Teren GetFieldById(Guid terenId)
         {
+            _fields = _fileRepository.IncarcaTerenuri();
             return _GetFieldById(terenId);
         }
 
         public List<Teren> GetAllFields()
         {
+            _fields = _fileRepository.IncarcaTerenuri();
             return _fields;
         }
 
 
         public void ModifyField(Guid terenId, string newFieldName, string newFieldType, int newFieldCapacity,
-            string newFieldProgram, string newFieldRestrictions)
+            string newFieldProgram, string newFieldRestrictions,int nr_max_rezervari, int durata_standard)
         {
-            _ModifyField(terenId,  newFieldName,  newFieldType, newFieldCapacity, newFieldProgram, newFieldRestrictions);
+            _fields = _fileRepository.IncarcaTerenuri();
+            _ModifyField(terenId,  newFieldName,  newFieldType, newFieldCapacity, newFieldProgram, newFieldRestrictions,nr_max_rezervari, durata_standard);
             _fileRepository.SalveazaTerenuri(_fields);
         }
 

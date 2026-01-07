@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
-namespace SystemRezervari.CORE.Data;
+namespace SistemRezervari.CORE.Data;
 
 public class JsonRepository : IFileRepository
 {

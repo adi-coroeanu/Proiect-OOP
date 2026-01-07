@@ -5,6 +5,6 @@ namespace SistemRezervari.CORE.Interfaces;
 public interface IReservationAdministration
 {
     public void RemoveReservation(Guid reservationId);
-    public void ModifyReservation(Guid reservationId, DateTime from, DateTime to);
+    public void ModifyReservation(Guid reservationId, DateTime from);
     public List<Rezervare> GetAllReservations(Guid terenId);
 }
