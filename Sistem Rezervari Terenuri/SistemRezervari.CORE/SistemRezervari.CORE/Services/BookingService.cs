@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.BookingLogic.Interfaces;
 using SistemRezervari.CORE.BookingLogic.Services;
 using SistemRezervari.CORE.Entities;
@@ -10,24 +11,24 @@ public class BookingService : IBookingService
     private readonly IFieldCatalogService _fieldCatalogService;
     private readonly IClientReservationService _clientReservationService;
     private readonly IClientDashboardService _clientDashboardService;
+    private readonly ILogger _logger;
     
-    public BookingService(IFileRepository repository)
+    public BookingService(IFileRepository repository, ILogger logger)
     {
-        try
-        {
-            _fieldCatalogService = new FieldCatalogService(repository);
-            _clientReservationService = new ClientReservationService(repository);
-            _clientDashboardService = new ClientDashboardService(repository);
-        }
-        catch (Exception e)
-        {
-            throw new Exception("Eroare la initializarea serviciului pentru clienti.", e); // Posibila modificare (Logger)
-        }
+        _fieldCatalogService = new FieldCatalogService(repository);
+        _clientReservationService = new ClientReservationService(repository);
+        _clientDashboardService = new ClientDashboardService(repository);
+        _logger = logger;
+    }
+
+    public List<Teren>? SearchFieldsBySport(string sportType)
+    {
+        return _fieldCatalogService.SearchFieldsBySport(sportType);
     }
     
-    public List<Teren> SearchField(string sportType, DateTime startTime)
+    public List<Teren>? SearchFieldsByDate(string date)
     {
-        return _fieldCatalogService.SearchField(sportType, startTime);
+        return _fieldCatalogService.SearchFieldsByDate(date);
     }
 
     public Teren? ViewInfoField(Guid fieldId)
