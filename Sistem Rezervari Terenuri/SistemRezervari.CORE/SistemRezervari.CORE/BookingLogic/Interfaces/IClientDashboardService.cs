@@ -4,5 +4,5 @@ namespace SistemRezervari.CORE.BookingLogic.Interfaces;
 
 public interface IClientDashboardService
 {
-    public List<Rezervare> GetUserReservations(Guid clientId);
+    public List<Rezervare>? GetUserReservations(Guid clientId);
 }

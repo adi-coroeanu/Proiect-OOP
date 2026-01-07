@@ -1,5 +1,4 @@
 ﻿using SistemRezervari.CORE.BookingLogic.Interfaces;
-using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
@@ -8,11 +7,13 @@ namespace SistemRezervari.CORE.BookingLogic.Services;
 // Creeaza rezervari noi
 public class ClientReservationService : IClientReservationService
 {
-    private IRepository<Rezervare> _reservationRepo;
+    private readonly IFileRepository _repository;
+    private readonly List<Rezervare> _reservationList;
 
-    public ClientReservationService(IRepository<Rezervare> reservationRepo)
+    public ClientReservationService(IFileRepository repository)
     {
-        _reservationRepo = reservationRepo;
+        _repository = repository;
+        _reservationList = _repository.IncarcaRezervari();
     }
 
     public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate, DateTime endDate)
@@ -30,11 +31,10 @@ public class ClientReservationService : IClientReservationService
             fieldId,
             userId,
             startDate,
-            endDate,
-            0,   // Problema aici
-            0
+            endDate
         );
         
-        _reservationRepo.Add(newReservation);
+        _reservationList.Add(newReservation);
+        _repository.SalveazaRezervari(_reservationList);
     }
 }

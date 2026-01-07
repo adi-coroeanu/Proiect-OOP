@@ -1,4 +1,5 @@
-using SistemRezervari.CORE.Data;
+using SistemRezervari.CORE.BookingLogic.Interfaces;
+using SistemRezervari.CORE.BookingLogic.Services;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
@@ -6,27 +7,22 @@ namespace SistemRezervari.CORE.Services;
 
 public class BookingService : IBookingService
 {
-    private ReservationRepository _reservationRepository;
-    private FieldRepository _fieldRepository;
-    private UserRepository _userRepository;
-    public BookingService(ReservationRepository reservationRepository, FieldRepository fieldRepository, UserRepository userRepository)
+    private readonly IFieldCatalogService _fieldCatalogService;
+    private readonly IClientReservationService _clientReservationService;
+    private readonly IClientDashboardService _clientDashboardService;
+    
+    public BookingService(IFileRepository repository)
     {
         try
         {
-            _reservationRepository = reservationRepository;
-            _fieldRepository = fieldRepository;
-            _userRepository = userRepository;
+            _fieldCatalogService = new FieldCatalogService(repository);
+            _clientReservationService = new ClientReservationService(repository);
+            _clientDashboardService = new ClientDashboardService(repository);
         }
         catch (Exception e)
         {
             throw new Exception("Eroare la initializarea serviciului pentru clienti.", e); // Posibila modificare (Logger)
         }
-    }
-
-    // Initializarea celor 3 clase componente
-    private void InitBookingService()
-    {
-        throw new NotImplementedException();
     }
     
     public List<Teren> SearchField(string sportType, DateTime startTime, DateTime endTime)
@@ -34,9 +30,9 @@ public class BookingService : IBookingService
         throw new NotImplementedException();
     }
 
-    public Teren ViewInfoField(Guid fieldId)
+    public Teren? ViewInfoField(Guid fieldId)
     {
-        throw new NotImplementedException();
+        return _fieldCatalogService.ViewInfoField(fieldId);
     }
     
 
@@ -45,8 +41,9 @@ public class BookingService : IBookingService
         throw new NotImplementedException();
     }
 
-    public List<Rezervare> GetUserReservations(Guid clientId)
+    public List<Rezervare>? GetUserReservations(Guid clientId)
     {
-        throw new NotImplementedException();
+        return _clientDashboardService.GetUserReservations(clientId);
     }
+
 }

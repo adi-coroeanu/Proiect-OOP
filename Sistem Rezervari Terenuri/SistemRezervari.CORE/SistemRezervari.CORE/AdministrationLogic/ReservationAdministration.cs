@@ -1,5 +1,4 @@
-﻿using SistemRezervari.CORE.Data;
-using SistemRezervari.CORE.Entities;
+﻿using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.AdministrationLogic;

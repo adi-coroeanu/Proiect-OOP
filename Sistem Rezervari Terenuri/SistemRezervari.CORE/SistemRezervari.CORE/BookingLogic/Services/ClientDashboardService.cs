@@ -1,5 +1,4 @@
 ﻿using SistemRezervari.CORE.BookingLogic.Interfaces;
-using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
@@ -8,17 +7,17 @@ namespace SistemRezervari.CORE.BookingLogic.Services;
 // Vede lista de rezervari(Trecut|Viitor)
 public class ClientDashboardService : IClientDashboardService
 {
-    private IRepository<Rezervare> _reservationRepo;
-    public ClientDashboardService(IRepository<Rezervare> reservationRepo)
+    private readonly List<Rezervare> _reservationList;
+    public ClientDashboardService(IFileRepository repository)
     {
-        _reservationRepo = reservationRepo;
+        _reservationList = repository.IncarcaRezervari();
     }
-    public List<Rezervare> GetUserReservations(Guid clientId)
+    public List<Rezervare>? GetUserReservations(Guid clientId)
     {
-        var userReservations = _reservationRepo.GetCopyAll()
+        var userReservations = _reservationList
             .Where(r => r.UtilizatorId == clientId)
-            .OrderByDescending(r => r.DataInceput);
-
-        return userReservations.ToList(); 
+            .OrderByDescending(r => r.DataInceput).ToList();
+        
+        return userReservations.Count == 0? null : userReservations;
     }
 }

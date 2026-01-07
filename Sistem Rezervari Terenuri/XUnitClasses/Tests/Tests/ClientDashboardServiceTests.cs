@@ -14,15 +14,18 @@ public class ClientDashboardServiceTests
 
         var clientDashboardService = MockedClientDashboardService(targetedUserId);
         
-        Assert.Equal(2, clientDashboardService.GetUserReservations(targetedUserId).Count);
+        var result = clientDashboardService.GetUserReservations(targetedUserId);
+
+        Assert.NotNull(result);
+        Assert.Equal(2, result.Count);
     }
 
     [Fact]
-    public void GetUserReservations_NoReservations_EmptyList()
+    public void GetUserReservations_NoReservations_Null()
     {
         var clientDashboardService = MockedClientDashboardService(Guid.NewGuid());
         
-        Assert.Empty(clientDashboardService.GetUserReservations(Guid.NewGuid()));
+        Assert.Null(clientDashboardService.GetUserReservations(Guid.NewGuid()));
     }
     
 
