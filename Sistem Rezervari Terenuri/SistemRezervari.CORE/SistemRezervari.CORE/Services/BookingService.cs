@@ -25,9 +25,9 @@ public class BookingService : IBookingService
         }
     }
     
-    public List<Teren> SearchField(string sportType, DateTime startTime, DateTime endTime)
+    public List<Teren> SearchField(string sportType, DateTime startTime)
     {
-        throw new NotImplementedException();
+        return _fieldCatalogService.SearchField(sportType, startTime);
     }
 
     public Teren? ViewInfoField(Guid fieldId)
@@ -36,7 +36,7 @@ public class BookingService : IBookingService
     }
     
 
-    public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate, DateTime endDate)
+    public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate)
     {
         throw new NotImplementedException();
     }

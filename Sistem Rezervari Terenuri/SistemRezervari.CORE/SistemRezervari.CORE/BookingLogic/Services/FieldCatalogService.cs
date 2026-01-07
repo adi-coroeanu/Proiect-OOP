@@ -17,12 +17,9 @@ public class FieldCatalogService : IFieldCatalogService
         _fieldList = repository.IncarcaTerenuri();
     }
 
-    public List<Teren> SearchField(string sportType, DateTime startTime, DateTime endTime)
+    public List<Teren> SearchField(string sportType, DateTime startTime)
     {
-        // var eligibleFields = _fieldRepo.GetCopyAll()
-        //     .Where(f => f.TipSport == sportType).Where(f => f.).ToList(); // Filtreaza dupa tip sport
-
-        throw new NotImplementedException();
+        return _fieldList;
 
     }
 
