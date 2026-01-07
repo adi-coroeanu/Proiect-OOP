@@ -23,7 +23,7 @@ public class FieldAdministration : IFieldAdministration
 
     private void _AddField(string name, string type, int capacity, string program)
     {
-        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program, ""));
+        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program, "none"));
         
     }
 
@@ -75,15 +75,9 @@ public class FieldAdministration : IFieldAdministration
                             break;
                         }
                     }
-                else
-                {
-                    //aici intra logica de ILogger eventual
-                }
+               
         }
-        else
-        {
-            //aici iar logica ILogger
-        }
+       
     }
 
     #endregion
