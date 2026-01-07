@@ -8,7 +8,7 @@ namespace SistemRezervari.UI;
 
 public class FakeService : IAdministrareService
 {
-    public void AddField(string name, string type, string capacity, string program)
+    public void AddField(string name, string type, int capacity, string program)
     {
         throw new NotImplementedException();
     }

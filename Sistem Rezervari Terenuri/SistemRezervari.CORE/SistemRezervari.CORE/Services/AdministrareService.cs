@@ -55,7 +55,7 @@ public class AdministrareService: IAdministrareService
 
     public void ModifyReservation(Guid reservationId, DateTime from, DateTime to)
     {
-        throw new NotImplementedException();
+       _reservationAdministration.ModifyReservation(reservationId, from, to);
     }
 
     public List<Rezervare> GetAllReservations(Guid terenId)

@@ -1,4 +1,5 @@
-﻿using SistemRezervari.CORE.Data;
+﻿using System.Text.RegularExpressions;
+using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
@@ -15,8 +16,6 @@ public class FieldAdministration : IFieldAdministration
         _fieldRepository = fieldRepository;
         _fields = _fieldRepository.GetCopyAll();
     }
-
-
 
     #region Private Methods
 
@@ -44,11 +43,13 @@ public class FieldAdministration : IFieldAdministration
     private void _ModifyField(Guid terenId, string newFieldName, string newFieldType, int newFieldCapacity,
         string newFieldProgram, string newFieldRestrictions)
     {
-        foreach (var field in _fields)
+        string pattern_newFieldProgram = @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]-([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
+        if(Regex.IsMatch(newFieldName, pattern_newFieldProgram) && Regex.IsMatch(newFieldRestrictions, pattern_newFieldProgram))
+        for(int i=0; i<_fields.Count; i++)
         {
-            if (field.Id == terenId)
+            if (_fields[i].Id == terenId)
             {
-                var newfield = field with
+                var newfield = _fields[i] with
                 {
                     Nume = newFieldName,
                     TipSport = newFieldType,
@@ -56,9 +57,15 @@ public class FieldAdministration : IFieldAdministration
                     intervale_indisponibile = newFieldRestrictions,
                     program_de_functionare = newFieldProgram
                 };
+                _fields[i] = newfield;
                 break;
             }
         }
+        else
+        {
+            //aici intra logica de ILogger eventual
+        }
+        
     }
 
     #endregion
