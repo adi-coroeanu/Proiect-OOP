@@ -6,14 +6,16 @@ namespace SistemRezervari.CORE.AdministrationLogic;
 
 public class ReservationAdministration : IReservationAdministration
 {
-    private ReservationRepository _reservationRepository;
+   
+    private IFileRepository _fileRepository;
     private List<Rezervare> _reservations;
-    private List<Rezervare> _reservations_with_specific_fieldID = new List<Rezervare>();
     
-    public ReservationAdministration(ReservationRepository  reservationRepository)
+    
+    public ReservationAdministration(IFileRepository fileRepository)
     {
-       _reservationRepository = reservationRepository; 
-       _reservations = _reservationRepository.GetCopyAll();
+       _fileRepository = fileRepository;
+       _reservations = _fileRepository.IncarcaRezervari();
+       
     }
     
 
@@ -26,13 +28,7 @@ public class ReservationAdministration : IReservationAdministration
                 _reservations.RemoveAt(i);
         }
     }
-
-    private void _GetAllReservations(Guid terenId)
-    {
-        foreach (var reservation in _reservations)
-            if(reservation.TerenId == terenId)
-                _reservations_with_specific_fieldID.Add(reservation);
-    }
+    
 
     private void _ModifyReservation(Guid reservationId, DateTime from, DateTime to)
     {
@@ -55,20 +51,19 @@ public class ReservationAdministration : IReservationAdministration
     public void RemoveReservation(Guid reservationId)
     {
         _RemoveReservation(reservationId);
-        _reservationRepository.ModifyList(_reservations);
+        _fileRepository.SalveazaRezervari(_reservations);
     }
 
     public void ModifyReservation(Guid reservationId, DateTime from, DateTime to)
     {
         _ModifyReservation(reservationId, from, to);
-        _reservationRepository.ModifyList(_reservations);
+        _fileRepository.SalveazaRezervari(_reservations);
     }
 
     
     public List<Rezervare> GetAllReservations(Guid terenId)
     {
-        _GetAllReservations(terenId);
-        return _reservations_with_specific_fieldID;
+        return _reservations.Where(r => r.TerenId == terenId).ToList();
     }
    #endregion
 }

@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.AdministrationLogic;
 using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
@@ -9,21 +10,17 @@ namespace SistemRezervari.CORE.Services;
 
 public class AdministrareService: IAdministrareService
 {
-    private ReservationRepository _reservationRepository;
-    private FieldRepository _fieldRepository;
-    private FieldAdministration _fieldAdministration;
-    private ReservationAdministration _reservationAdministration;
+  
+    private IFieldAdministration _fieldAdministration;
+    private IReservationAdministration _reservationAdministration;
     private readonly IFileRepository _fileRepository;
     
     
-    public AdministrareService(ReservationRepository reservationRepository,FieldRepository fieldRepository, IFileRepository fileRepository)
+    public AdministrareService(IFileRepository fileRepository)
     {
-      
-        _reservationRepository = reservationRepository;
-        _fieldRepository = fieldRepository;                
         _fileRepository = fileRepository;
-        _fieldAdministration = new FieldAdministration(_fieldRepository);
-        _reservationAdministration = new ReservationAdministration(_reservationRepository);
+        _fieldAdministration = new FieldAdministration(_fileRepository);
+        _reservationAdministration = new ReservationAdministration(_fileRepository);
     }
 
     public void AddField(string name, string type, int capacity, string program)
