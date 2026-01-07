@@ -18,8 +18,8 @@ public partial class ClientForm : Form
         string time = txtStart.Text;
         DateTime dtime = DateTime.Now;
         MessageBox.Show(dateTimePicker1.Text);
-        List<Teren> terenuri = _bookingService.SearchField(sport,dtime);
-        foreach(Teren teren in terenuri)
-            listBox1.Items.Add(teren.Nume);
+        //List<Teren> terenuri = _bookingService.SearchField(sport,dtime);
+        //foreach(Teren teren in terenuri)
+        //  listBox1.Items.Add(teren.Nume);
     }
 }

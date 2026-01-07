@@ -51,13 +51,17 @@ public class FieldAdministration : IFieldAdministration
         if (Regex.IsMatch(newFieldProgram, pattern_newFieldProgram))    
         {
             foreach (string program in programs)
+            {
+                if (program.ToLower() == "none") 
+                    continue;
                 if (!Regex.IsMatch(program, pattern_newFieldProgram))
                 {
                     ok = false;
                     break;
                 }
-                    
-                    if(ok==true)
+            }
+
+            if(ok==true)
                     for (int i = 0; i < _fields.Count; i++)
                     {
                         if (_fields[i].Id == terenId)
