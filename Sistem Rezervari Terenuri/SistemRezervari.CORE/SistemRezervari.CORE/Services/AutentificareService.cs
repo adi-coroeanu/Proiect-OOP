@@ -5,11 +5,11 @@ namespace SistemRezervari.CORE.Services;
 
 public class AutentificareService : IAutentificareService
 {
-    private List<Utilizator> _listaUtilizatori;
+    private readonly List<Utilizator> _listaUtilizatori;
 
-    public AutentificareService(List<Utilizator> listaUtilizatori)
+    public AutentificareService(IFileRepository repository)
     {
-        _listaUtilizatori = listaUtilizatori;
+        _listaUtilizatori = repository.IncarcaUtilizatori();
     }
 
     public Utilizator? Login(string username, string parola)
