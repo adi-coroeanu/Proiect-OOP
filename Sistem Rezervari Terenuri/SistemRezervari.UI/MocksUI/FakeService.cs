@@ -8,12 +8,14 @@ namespace SistemRezervari.UI;
 
 public class FakeService : IAdministrareService
 {
-    public void AddField(string name, string type, int capacity, string program)
+    
+
+    public void RemoveField(Guid terenId)
     {
         throw new NotImplementedException();
     }
 
-    public void RemoveField(Guid terenId)
+    public void AddField(string name, string type, int capacity, string program)
     {
         throw new NotImplementedException();
     }

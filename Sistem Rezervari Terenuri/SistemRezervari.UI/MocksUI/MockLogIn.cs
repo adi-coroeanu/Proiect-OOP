@@ -1,7 +1,7 @@
 using SistemRezervari.CORE.Entities;
 
-namespace SistemRezervari.UI;
-using SistemRezervari.CORE.Interfaces;
+namespace SistemRezervari.UI.MocksUI;
+using CORE.Interfaces;
 
 public class MockLogIn : IAutentificareService
 {

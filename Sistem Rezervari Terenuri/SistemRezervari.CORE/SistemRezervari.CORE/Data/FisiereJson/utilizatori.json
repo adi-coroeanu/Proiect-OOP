@@ -1,0 +1,21 @@
+[
+  {
+    "Id": "110e8400-e29b-11d4-a716-446655440000",
+    "Username": "admin_ion",
+    "Parola": "parola1234",
+    "Rol": "Admin"
+  },
+  {
+    "Id": "220e8400-e29b-11d4-a716-446655440000",
+    "Username": "andrei_popescu",
+    "Parola": "client_secret",
+    "Rol": "Client"
+  },
+  {
+    "Id": "330e8400-e29b-11d4-a716-446655440000",
+    "Username": "maria_test",
+    "Parola": "maria2024",
+    "Rol": "Client"
+  }
+]{
+}

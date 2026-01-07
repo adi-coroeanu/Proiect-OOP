@@ -2,8 +2,10 @@ using SistemRezervari.CORE.AdministrationLogic;
 using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
+using SistemRezervari.CORE.Interfaces;
 
 namespace SistemRezervari.CORE.Services;
+
 
 public class AdministrareService: IAdministrareService
 {
@@ -11,19 +13,21 @@ public class AdministrareService: IAdministrareService
     private FieldRepository _fieldRepository;
     private FieldAdministration _fieldAdministration;
     private ReservationAdministration _reservationAdministration;
+    private readonly IFileRepository _fileRepository;
     
-    public AdministrareService(ReservationRepository reservationRepository,FieldRepository fieldRepository)
+    
+    public AdministrareService(ReservationRepository reservationRepository,FieldRepository fieldRepository, IFileRepository fileRepository)
     {
       
         _reservationRepository = reservationRepository;
         _fieldRepository = fieldRepository;                
-        
+        _fileRepository = fileRepository;
         _fieldAdministration = new FieldAdministration(_fieldRepository);
         _reservationAdministration = new ReservationAdministration(_reservationRepository);
     }
 
     public void AddField(string name, string type, int capacity, string program)
-    {
+    {    
         _fieldAdministration.AddField(name, type, capacity, program);
     }
 

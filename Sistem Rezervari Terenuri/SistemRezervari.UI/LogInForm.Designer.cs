@@ -76,6 +76,7 @@ partial class LogInForm
         txtPass.Location = new System.Drawing.Point(301, 125);
         txtPass.Margin = new System.Windows.Forms.Padding(3, 3, 3, 60);
         txtPass.Name = "txtPass";
+        txtPass.PasswordChar = '*';
         txtPass.Size = new System.Drawing.Size(196, 23);
         txtPass.TabIndex = 1;
         // 

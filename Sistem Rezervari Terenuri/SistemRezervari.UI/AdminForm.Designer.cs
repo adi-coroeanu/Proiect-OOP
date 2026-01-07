@@ -30,11 +30,12 @@ partial class AdminForm
     private void InitializeComponent()
     {
         button1 = new System.Windows.Forms.Button();
+        listBox1 = new System.Windows.Forms.ListBox();
         SuspendLayout();
         // 
         // button1
         // 
-        button1.Location = new System.Drawing.Point(58, 261);
+        button1.Location = new System.Drawing.Point(643, 40);
         button1.Name = "button1";
         button1.Size = new System.Drawing.Size(132, 42);
         button1.TabIndex = 0;
@@ -42,15 +43,28 @@ partial class AdminForm
         button1.UseVisualStyleBackColor = true;
         button1.Click += button1_Click;
         // 
+        // listBox1
+        // 
+        listBox1.BackColor = System.Drawing.Color.FromArgb(((int)((byte)255)), ((int)((byte)224)), ((int)((byte)192)));
+        listBox1.FormattingEnabled = true;
+        listBox1.ItemHeight = 15;
+        listBox1.Location = new System.Drawing.Point(12, 40);
+        listBox1.Name = "listBox1";
+        listBox1.Size = new System.Drawing.Size(271, 229);
+        listBox1.TabIndex = 2;
+        // 
         // AdminForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(989, 464);
+        Controls.Add(listBox1);
         Controls.Add(button1);
         Text = "Admin";
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.ListBox listBox1;
 
     private System.Windows.Forms.Button button1;
 
