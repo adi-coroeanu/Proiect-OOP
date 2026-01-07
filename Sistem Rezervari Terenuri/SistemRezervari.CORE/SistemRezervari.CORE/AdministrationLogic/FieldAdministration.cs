@@ -20,9 +20,9 @@ public class FieldAdministration : IFieldAdministration
 
     #region Private Methods
 
-    private void _AddField(string name, string type, int capacity, string program,int nr_max_rezervari, int durata_standard)
+    private void _AddField(string name, string type, int capacity, string program,string intervale_indisponibile,int nr_max_rezervari, int durata_standard)
     {
-        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program, "none",2,60));
+        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program,intervale_indisponibile,nr_max_rezervari,durata_standard));
         
     }
 
@@ -85,10 +85,10 @@ public class FieldAdministration : IFieldAdministration
 
     #region Public Methods
 
-        public void AddField(string name, string type, int capacity, string program,int nr_max_rezervari, int durata_standard)
+        public void AddField(string name, string type, int capacity, string program,string intervale_indisponibile,int nr_max_rezervari, int durata_standard)
         {
             _fields = _fileRepository.IncarcaTerenuri();
-            _AddField(name, type, capacity, program, nr_max_rezervari, durata_standard);
+            _AddField(name, type, capacity, program ,intervale_indisponibile,nr_max_rezervari, durata_standard);
             _fileRepository.SalveazaTerenuri(_fields);
         }
 

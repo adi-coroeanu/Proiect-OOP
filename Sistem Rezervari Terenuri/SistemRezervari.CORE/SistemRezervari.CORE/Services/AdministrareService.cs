@@ -2,7 +2,6 @@ using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.AdministrationLogic;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
-using SistemRezervari.CORE.Interfaces;
 using SistemRezervari.CORE.Data;
 namespace SistemRezervari.CORE.Services;
 
@@ -22,9 +21,9 @@ public class AdministrareService: IAdministrareService
         _reservationAdministration = new ReservationAdministration(_fileRepository);
     }
 
-    public void AddField(string name, string type, int capacity, string program,int nr_max_rezervari, int durata_standard)
+    public void AddField(string name, string type, int capacity, string program,string intervale_indisponibile,int nr_max_rezervari, int durata_standard)
     {    
-        _fieldAdministration.AddField(name, type, capacity, program,nr_max_rezervari,durata_standard);
+        _fieldAdministration.AddField(name, type, capacity, program,intervale_indisponibile,nr_max_rezervari,durata_standard);
     }
 
     public void RemoveField(Guid terenId)
