@@ -37,6 +37,7 @@ partial class ClientForm
         txtEnd = new System.Windows.Forms.TextBox();
         button1 = new System.Windows.Forms.Button();
         dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+        comboBox1 = new System.Windows.Forms.ComboBox();
         SuspendLayout();
         // 
         // txtStart
@@ -87,11 +88,21 @@ partial class ClientForm
         dateTimePicker1.Size = new System.Drawing.Size(125, 23);
         dateTimePicker1.TabIndex = 7;
         // 
+        // comboBox1
+        // 
+        comboBox1.FormattingEnabled = true;
+        comboBox1.Items.AddRange(new object[] { "Fotbal", "Baschet", "Tenis" });
+        comboBox1.Location = new System.Drawing.Point(57, 268);
+        comboBox1.Name = "comboBox1";
+        comboBox1.Size = new System.Drawing.Size(118, 23);
+        comboBox1.TabIndex = 8;
+        // 
         // ClientForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(comboBox1);
         Controls.Add(dateTimePicker1);
         Controls.Add(button1);
         Controls.Add(txtEnd);
@@ -102,6 +113,8 @@ partial class ClientForm
         ResumeLayout(false);
         PerformLayout();
     }
+
+    private System.Windows.Forms.ComboBox comboBox1;
 
     private System.Windows.Forms.DateTimePicker dateTimePicker1;
 
