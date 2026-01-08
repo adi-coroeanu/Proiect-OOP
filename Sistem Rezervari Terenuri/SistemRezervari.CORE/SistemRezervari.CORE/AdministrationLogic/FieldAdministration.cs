@@ -22,7 +22,24 @@ public class FieldAdministration : IFieldAdministration
 
     private void _AddField(string name, string type, int capacity, string program,string intervale_indisponibile,int nr_max_rezervari, int durata_standard)
     {
-        _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program,intervale_indisponibile,nr_max_rezervari,durata_standard));
+        bool ok = true;
+        string pattern = @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]-([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
+        List<string> interv = intervale_indisponibile.Split(",",StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+        if(!Regex.IsMatch(program, pattern))
+            ok = false;
+        foreach (string intervale in interv)
+        {
+            if (intervale.ToLower() == "none") 
+                continue;
+            if (!Regex.IsMatch(intervale, pattern))
+            {
+                ok = false;
+                break;
+            }
+        }
+        
+        if(ok)
+            _fields.Add(new Teren(Guid.NewGuid(), name, type, capacity, program,intervale_indisponibile,nr_max_rezervari,durata_standard));
         
     }
 
