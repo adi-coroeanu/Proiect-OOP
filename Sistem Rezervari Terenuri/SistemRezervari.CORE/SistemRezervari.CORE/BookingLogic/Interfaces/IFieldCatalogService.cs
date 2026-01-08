@@ -6,5 +6,5 @@ public interface IFieldCatalogService
 {
     public List<Teren>? SearchFieldsBySport(string sportType);
     public List<Teren>? SearchFieldsByDate(string date);
-    public Teren? ViewInfoField(Guid fieldId);
+    public List<string>? GetAvailableSlots(Guid fieldId, string date);
 }

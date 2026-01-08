@@ -9,22 +9,20 @@ public class ClientReservationService : IClientReservationService
 {
     private readonly IFileRepository _repository;
     private readonly List<Rezervare> _reservationList;
+    private readonly List<Teren> _fieldList;
 
     public ClientReservationService(IFileRepository repository)
     {
         _repository = repository;
         _reservationList = _repository.IncarcaRezervari();
+        _fieldList = _repository.IncarcaTerenuri();
     }
 
-    public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate, DateTime endDate)
+    public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate)
     {
-        DateTime currentTime = DateTime.Now;
-
-        if (startDate < currentTime || endDate <= startDate)
-        {
-            throw new Exception("Intervalul de timp pentru rezervare este invalid.");
-        }
-
+        int durataStandard = _fieldList.Find(f => f.Id == fieldId)?.durata_standard ?? 60;
+        DateTime endDate = startDate.AddMinutes(durataStandard);
+        
         var newReservation = new Rezervare
         (
             Guid.NewGuid(),

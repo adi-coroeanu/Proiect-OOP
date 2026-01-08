@@ -2,5 +2,5 @@
 
 public interface IClientReservationService
 {
-    public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate, DateTime endDate);
+    public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate);
 }

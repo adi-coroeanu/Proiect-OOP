@@ -26,20 +26,20 @@ public class BookingService : IBookingService
         return _fieldCatalogService.SearchFieldsBySport(sportType);
     }
     
-    public List<Teren>? SearchFieldsByDate(string date)
+    public List<Teren>? SearchFieldsByDate(string date) // Ca metoda sa functioneze trebuie inainte folosita SearchFieldBySport
     {
         return _fieldCatalogService.SearchFieldsByDate(date);
     }
 
-    public Teren? ViewInfoField(Guid fieldId)
+    public List<string>? GetAvailableSlots(Guid fieldId, string date)
     {
-        return _fieldCatalogService.ViewInfoField(fieldId);
+        return _fieldCatalogService.GetAvailableSlots(fieldId, date);
     }
     
 
     public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate)
     {
-        throw new NotImplementedException();
+        _clientReservationService.MakeReservation(fieldId, userId, startDate);
     }
 
     public List<Rezervare>? GetUserReservations(Guid clientId)
