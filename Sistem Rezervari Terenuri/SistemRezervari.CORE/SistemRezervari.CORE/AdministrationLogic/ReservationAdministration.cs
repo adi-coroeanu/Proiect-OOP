@@ -28,16 +28,37 @@ public class ReservationAdministration : IReservationAdministration
     }
     
 
-    private void _ModifyReservation(Guid reservationId, DateTime from)
+    private void _ModifyReservation(Guid reservationId, string from)
     {
+        List<string> program = from.Split('/').ToList();
+        int year = int.Parse(program[2]);
+        int month = int.Parse(program[1]);
+        int day = int.Parse(program[0]);
+        if (month < 1 || month > 12) 
+        {
+            throw new InvalidDataException("Month must be between 1 and 12");
+        }
+
+        if (day < 1 || day > 31) 
+        {
+            throw new InvalidDataException("Day must be between 1 and 31");
+        }
+        
+        if (day > DateTime.DaysInMonth(year, month))
+        {
+            throw new InvalidDataException($"Month {month} from year {year} does not have {day} days!");
+        }
+        
+        DateTime time = new DateTime(int.Parse(program[2]), int.Parse(program[1]), int.Parse(program[0]));
         for(int i=0; i<_reservations.Count; i++)
         {
+            Teren field_as = _fields.FirstOrDefault(t => t.Id == _reservations[i].TerenId);
             if (_reservations[i].Id == reservationId)
             {
                 var new_reservation = _reservations[i] with
                 {
-                    DataInceput = from,
-                    DataSfarsit = from.AddHours((int)_fields[i].durata_standard/60)
+                    DataInceput = time,
+                    DataSfarsit = time.AddHours((int)field_as.durata_standard/60)
                 };
                 _reservations[i] =  new_reservation;
             }
@@ -53,7 +74,7 @@ public class ReservationAdministration : IReservationAdministration
         _fileRepository.SalveazaRezervari(_reservations);
     }
 
-    public void ModifyReservation(Guid reservationId, DateTime from)
+    public void ModifyReservation(Guid reservationId, string from)
     {
         _fields = _fileRepository.IncarcaTerenuri();
         _reservations = _fileRepository.IncarcaRezervari();

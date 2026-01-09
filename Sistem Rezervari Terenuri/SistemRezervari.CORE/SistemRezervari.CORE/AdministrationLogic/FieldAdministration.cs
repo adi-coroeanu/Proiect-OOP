@@ -26,7 +26,7 @@ public class FieldAdministration : IFieldAdministration
         string pattern = @"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]-([0-1]?[0-9]|2[0-3]):[0-5][0-9]$";
         List<string> interv = intervale_indisponibile.Split(",",StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
         if(!Regex.IsMatch(program, pattern))
-            ok = false;
+            throw new Exception("Open from/to error: The format must be HH:mm-HH:mm (ex: 08:00-22:00).");
         foreach (string intervale in interv)
         {
             if (intervale.ToLower() == "none") 
@@ -34,7 +34,7 @@ public class FieldAdministration : IFieldAdministration
             if (!Regex.IsMatch(intervale, pattern))
             {
                 ok = false;
-                break;
+                throw new Exception("Closed intervals error: One or more intervals have an invalid format or are not separated by comma.");
             }
         }
         
@@ -73,12 +73,11 @@ public class FieldAdministration : IFieldAdministration
                     continue;
                 if (!Regex.IsMatch(program, pattern_newFieldProgram))
                 {
-                    ok = false;
-                    break;
+                    throw new Exception("Closed intervals error: One or more intervals have an invalid format or are not separated by comma.");
                 }
             }
 
-            if(ok==true)
+            if(ok)
                     for (int i = 0; i < _fields.Count; i++)
                     {
                         if (_fields[i].Id == terenId)
@@ -99,6 +98,10 @@ public class FieldAdministration : IFieldAdministration
                     }
             
                
+        }
+        else
+        {
+            throw new Exception("Open from/to error: The format must be HH:mm-HH:mm (ex: 08:00-22:00).");
         }
        
     }

@@ -59,7 +59,7 @@ public class AdministrareService: IAdministrareService
         _logger.LogInformation($"Reservation has been removed");
     }
 
-    public void ModifyReservation(Guid reservationId, DateTime from)
+    public void ModifyReservation(Guid reservationId, string from)
     {
        _reservationAdministration.ModifyReservation(reservationId, from);
        _logger.LogInformation($"Reservation has been modified");
