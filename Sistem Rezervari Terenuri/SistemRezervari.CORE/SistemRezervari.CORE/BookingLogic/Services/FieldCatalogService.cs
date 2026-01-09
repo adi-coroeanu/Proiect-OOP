@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.BookingLogic.Interfaces;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
@@ -11,12 +12,14 @@ public class FieldCatalogService : IFieldCatalogService
     private readonly List<Rezervare> _reservationList;
     private readonly List<Teren> _fieldList;
     private List<Teren>? _filteredFieldList;
+    private readonly ILogger _logger;
     
-    public FieldCatalogService(IFileRepository repository)
+    public FieldCatalogService(IFileRepository repository, ILogger logger)
     {
         _reservationList = repository.IncarcaRezervari();
         _fieldList = repository.IncarcaTerenuri();
         _filteredFieldList = new();
+        _logger = logger;
     }
 
     public List<Teren>? SearchFieldsBySport(string sportType)
@@ -24,6 +27,7 @@ public class FieldCatalogService : IFieldCatalogService
         _filteredFieldList = _fieldList
             .Where(f => f.TipSport == sportType).ToList();
 
+        _logger.LogInformation("Found {Count} fields for sport type {SportType}", _filteredFieldList.Count, sportType);
         return _filteredFieldList.Count != 0 ? _filteredFieldList : null;
     }
 
@@ -42,13 +46,18 @@ public class FieldCatalogService : IFieldCatalogService
         var field = _fieldList.Find(f => f.Id == fieldId);
 
         if (field == null) // Daca terenul nu exista
+        {
+            _logger.LogWarning("Field with ID {FieldId} not found.", fieldId);
             return new List<string>();
+        }
         
         var dateOnly = String2DateOnly(date);
 
         var durataStandard = field.durata_standard;
 
         var rawBlockedPeriodsString = field.intervale_indisponibile;
+        
+        var maxReservationsOnField = field.nr_max_rezervari;
         
         var functioningPeriod = Period2TimeInterval(field.program_de_functionare);
 
@@ -60,10 +69,12 @@ public class FieldCatalogService : IFieldCatalogService
             .ToList();
         
         List<TimeInterval> reservedPeriods = reservationsOnFieldAndDate
-            .Select(r => new TimeInterval 
+            .GroupBy(r => r.DataInceput)
+            .Where(g => g.Count() >= maxReservationsOnField)
+            .Select(g => new TimeInterval 
             { 
-                Start = TimeOnly.FromDateTime(r.DataInceput), 
-                End = TimeOnly.FromDateTime(r.DataSfarsit) 
+                Start = TimeOnly.FromDateTime(g.First().DataInceput), 
+                End = TimeOnly.FromDateTime(g.First().DataSfarsit) 
             })
             .ToList();
 
@@ -101,6 +112,9 @@ public class FieldCatalogService : IFieldCatalogService
         var freePeriodsStrings = freePeriods
             .Select(fp => TimeInterval2String(fp))
             .ToList();
+        
+        _logger.LogInformation("Found {Count} available slots for field ID {FieldId} on date {Date}",
+            freePeriodsStrings.Count, fieldId, date);
         
         return freePeriodsStrings.Any() ? freePeriodsStrings : null;
     }

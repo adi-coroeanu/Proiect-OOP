@@ -1,4 +1,5 @@
-﻿using SistemRezervari.CORE.BookingLogic.Interfaces;
+﻿using Microsoft.Extensions.Logging;
+using SistemRezervari.CORE.BookingLogic.Interfaces;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
@@ -10,12 +11,14 @@ public class ClientReservationService : IClientReservationService
     private readonly IFileRepository _repository;
     private readonly List<Rezervare> _reservationList;
     private readonly List<Teren> _fieldList;
+    private readonly ILogger _logger;
 
-    public ClientReservationService(IFileRepository repository)
+    public ClientReservationService(IFileRepository repository, ILogger logger)
     {
         _repository = repository;
         _reservationList = _repository.IncarcaRezervari();
         _fieldList = _repository.IncarcaTerenuri();
+        _logger = logger;
     }
 
     public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate)
@@ -34,5 +37,8 @@ public class ClientReservationService : IClientReservationService
         
         _reservationList.Add(newReservation);
         _repository.SalveazaRezervari(_reservationList);
+        
+        _logger.LogInformation("New reservation created: {ReservationId} for user {UserId} on field {FieldId} from {StartDate} to {EndDate}",
+            newReservation.Id, userId, fieldId, startDate, endDate);
     }
 }

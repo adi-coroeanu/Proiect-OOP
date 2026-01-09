@@ -11,14 +11,15 @@ public class BookingService : IBookingService
     private readonly IFieldCatalogService _fieldCatalogService;
     private readonly IClientReservationService _clientReservationService;
     private readonly IClientDashboardService _clientDashboardService;
-    private readonly ILogger _logger;
     
     public BookingService(IFileRepository repository, ILogger logger)
     {
-        _fieldCatalogService = new FieldCatalogService(repository);
-        _clientReservationService = new ClientReservationService(repository);
-        _clientDashboardService = new ClientDashboardService(repository);
-        _logger = logger;
+ 
+        _fieldCatalogService = new FieldCatalogService(repository, logger);
+        _clientReservationService = new ClientReservationService(repository, logger);
+        _clientDashboardService = new ClientDashboardService(repository, logger);
+            
+        logger.LogInformation("FieldCatalogService initialized successfully.");
     }
 
     public List<Teren>? SearchFieldsBySport(string sportType)
