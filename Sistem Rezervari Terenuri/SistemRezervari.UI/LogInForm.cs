@@ -15,6 +15,26 @@ public partial class LogInForm : Form
         _autentificareService = autentificareService; 
         _serviceProvider = serviceProvider;
     }
+    private void TextBox_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            
+            e.SuppressKeyPress = true;
+
+            
+            this.SelectNextControl((Control)sender, true, true, true, true);
+        }
+    }
+
+    private void TextBox2_Enter(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Enter)
+        {
+            e.SuppressKeyPress = true;
+            btnLogIn.PerformClick();
+        }
+    }
 
     private void btnLogIn_Click(object sender, EventArgs e)
     {
@@ -35,7 +55,7 @@ public partial class LogInForm : Form
                 {
                     // Cerem AdminForm de la Host (ca să aibă și el serviciile lui injectate)
                     var adminForm = _serviceProvider.GetRequiredService<AdminForm>();
-                    
+                    adminForm.UserConfig(utilizator.Username);
                     // (Opțional) Îi trimitem numele userului
                     // adminForm.ConfigureazaUtilizator(utilizator.Username, utilizator.Rol);
                     

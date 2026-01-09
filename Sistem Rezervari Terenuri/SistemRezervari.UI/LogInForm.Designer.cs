@@ -69,6 +69,7 @@ partial class LogInForm
         txtUser.Name = "txtUser";
         txtUser.Size = new System.Drawing.Size(196, 23);
         txtUser.TabIndex = 0;
+        txtUser.KeyDown += TextBox_KeyDown;
         // 
         // txtPass
         // 
@@ -79,6 +80,7 @@ partial class LogInForm
         txtPass.PasswordChar = '*';
         txtPass.Size = new System.Drawing.Size(196, 23);
         txtPass.TabIndex = 1;
+        txtPass.KeyDown += TextBox2_Enter;
         // 
         // btnLogIn
         // 
@@ -91,6 +93,7 @@ partial class LogInForm
         btnLogIn.Text = "Log In";
         btnLogIn.UseVisualStyleBackColor = true;
         btnLogIn.Click += btnLogIn_Click;
+        btnLogIn.KeyDown += TextBox_KeyDown;
         // 
         // labelPass
         // 

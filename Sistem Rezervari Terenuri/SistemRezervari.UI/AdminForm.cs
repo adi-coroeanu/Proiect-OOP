@@ -15,61 +15,132 @@ public partial class AdminForm : Form
         
     }
     
-
-    private void button1_Click(object sender, EventArgs e)
+    private void AdminForm_Load(object sender, EventArgs e)
     {
         foreach (var var in _administrareService.GetAllFields())
         {
-            listBox1.Items.Add(var.Nume);
+            listboxFields.Items.Add(var.Nume);
+        }
+
+        TabIndex = 0;
+        
+        
+    }
+
+    private void AdminForm_Click(object sender, EventArgs e)
+    {
+        listboxFields.SelectedIndex = -1;
+    }
+    
+    public void UserConfig(string username)
+    {
+        txtUser.Text = $"Welcome back,\n{username}";
+    }
+    
+    private void listboxFields_SelectedIndexChanged(object sender, EventArgs e)
+        {
+    
+            int index = listboxFields.SelectedIndex;
+            if (index != -1){
+                btnAdd.Visible = true;
+                Teren teren = _administrareService.GetAllFields()[index];
+                txtName.Text = teren.Nume;
+                comboBoxType.SelectedItem=comboBoxType.Items[comboBoxType.Items.IndexOf(teren.TipSport)];
+                txtCapacity.Text = teren.Capacitate.ToString();
+                txtOpenFT.Text = teren.program_de_functionare;
+                txtClosedFT.Text = teren.intervale_indisponibile;
+                txtMaxRes.Text = teren.nr_max_rezervari.ToString();
+                txtResDur.Text = teren.durata_standard.ToString();
+                btnModify.Visible = true;
+        }
+            else
+            {
+                btnAdd.Visible = false;
+                
+                txtName.Clear();
+                comboBoxType.SelectedItem=null;
+                txtCapacity.Clear();
+                txtOpenFT.Clear();
+                txtClosedFT.Clear();
+                txtMaxRes.Clear();
+                txtResDur.Clear();
+                btnModify.Visible = false;
+            }
+    
+        
+                
+        }
+    
+    private void btnView_Click(object sender, EventArgs e)
+    {
+        foreach (var var in _administrareService.GetAllFields())
+        {
+            listboxFields.Items.Add(var.Nume);
+        }
+    }
+    
+    private void btnAdd_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            
+            string name = txtName.Text;
+            string type = comboBoxType.SelectedItem.ToString();
+            int capacity = int.Parse(txtCapacity.Text);
+            string program = txtOpenFT.Text;
+            string interv_in = txtClosedFT.Text;
+            int nr_max = int.Parse(txtMaxRes.Text);
+            int durata = int.Parse(txtResDur.Text);
+            _administrareService.AddField(name, type, capacity, program, interv_in, nr_max, durata);
+            if (_administrareService.GetAllFields().Count != listboxFields.Items.Count)
+                listboxFields.Items.Add(_administrareService.GetAllFields().Last().Nume);
+            else
+                throw new Exception("Eroare la format");
+
+        }
+        catch (Exception ex)
+        {/*
+            errorProvider1.SetError(txtName,"Invalid name");
+            errorProvider1.SetError(comboBoxType,"Invalid type");
+            errorProvider1.SetError(txtCapacity,"Invalid capacity");
+            errorProvider1.SetError(txtOpenFT,"Correct format 00:00-24:00");
+            errorProvider1.SetError(txtClosedFT,"Correct format 00:00-24:00(or 00:00-24:00,00:00-24:00)");
+            errorProvider1.SetError(txtMaxRes,"Invalid number of reservations");
+            errorProvider1.SetError(txtResDur,"Invalid duration");
+            */
+            MessageBox.Show(ex.Message);
         }
     }
 
-    private void button2_Click(object sender, EventArgs e)
-    {
-        string name = textBox1.Text;
-        string type = textBox2.Text;
-        int capacity = int.Parse(textBox3.Text);
-        string program = textBox4.Text;
-        string interv_in = textBox5.Text;
-        int nr_max = int.Parse(textBox6.Text);
-        int durata = int.Parse(textBox7.Text);
-        _administrareService.AddField(name,type,capacity,program,interv_in,nr_max,durata);
-        listBox1.Items.Add(_administrareService.GetAllFields().Last().Nume);
+    private void btnRemove_Click(object sender, EventArgs e)
+    { 
+        int index = listboxFields.SelectedIndex;
+        if (index != -1)
+        {
+            _administrareService.RemoveField(_administrareService.GetAllFields()[index].Id);
+            listboxFields.Items.RemoveAt(index);
+        }
+        else
+        {
+            MessageBox.Show("A field needs to be selected before removal!","Eroare", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
     }
-
-    private void button3_Click(object sender, EventArgs e)
-    {
-        int index = listBox1.SelectedIndex;
-        _administrareService.RemoveField(_administrareService.GetAllFields()[index].Id);
-        listBox1.Items.RemoveAt(index);
-    }
-
-    private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        int index = listBox1.SelectedIndex;
-        Teren teren = _administrareService.GetAllFields()[index];
-        textBox1.Text=teren.Nume;
-        textBox2.Text=teren.TipSport;
-        textBox3.Text = teren.Capacitate.ToString();
-        textBox4.Text = teren.program_de_functionare;
-        textBox5.Text = teren.intervale_indisponibile;
-        textBox6.Text = teren.nr_max_rezervari.ToString();
-        textBox7.Text = teren.durata_standard.ToString();
-        btnModify.Enabled = true;
-            
-    }
-
+    
     private void btnModify_Click(object sender, EventArgs e)
     {
-        string name = textBox1.Text;
-        string type = textBox2.Text;
-        int capacity = int.Parse(textBox3.Text);
-        string program = textBox4.Text;
-        string interv_in = textBox5.Text;
-        int nr_max = int.Parse(textBox6.Text);
-        int durata = int.Parse(textBox7.Text);
-        Guid id = _fields[listBox1.SelectedIndex].Id;
+        string name = txtName.Text;
+        string type = comboBoxType.SelectedItem.ToString();
+        int capacity = int.Parse(txtCapacity.Text);
+        string program = txtOpenFT.Text;
+        string interv_in = txtClosedFT.Text;
+        int nr_max = int.Parse(txtMaxRes.Text);
+        int durata = int.Parse(txtResDur.Text);
+        Guid id = _fields[listboxFields.SelectedIndex].Id;
         _administrareService.ModifyField(id,name, type, capacity, program, interv_in, nr_max, durata);
-        btnModify.Enabled = false;
+        btnModify.Visible = false;
+        listboxFields.SelectedIndex = -1;
     }
+    
+    
+    
 }
