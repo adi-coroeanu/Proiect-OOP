@@ -33,7 +33,6 @@ partial class AdminForm
         btnView = new System.Windows.Forms.Button();
         listboxFields = new System.Windows.Forms.ListBox();
         txtName = new System.Windows.Forms.TextBox();
-        textBox2 = new System.Windows.Forms.TextBox();
         txtCapacity = new System.Windows.Forms.TextBox();
         txtOpenFT = new System.Windows.Forms.TextBox();
         txtClosedFT = new System.Windows.Forms.TextBox();
@@ -85,13 +84,6 @@ partial class AdminForm
         txtName.Size = new System.Drawing.Size(129, 23);
         txtName.TabIndex = 3;
         // 
-        // textBox2
-        // 
-        textBox2.Location = new System.Drawing.Point(327, 40);
-        textBox2.Name = "textBox2";
-        textBox2.Size = new System.Drawing.Size(129, 23);
-        textBox2.TabIndex = 4;
-        // 
         // txtCapacity
         // 
         txtCapacity.Location = new System.Drawing.Point(486, 129);
@@ -122,7 +114,7 @@ partial class AdminForm
         // 
         // btnAdd
         // 
-        btnAdd.Location = new System.Drawing.Point(334, 227);
+        btnAdd.Location = new System.Drawing.Point(486, 227);
         btnAdd.Name = "btnAdd";
         btnAdd.Size = new System.Drawing.Size(123, 42);
         btnAdd.TabIndex = 9;
@@ -139,7 +131,7 @@ partial class AdminForm
         // 
         // btnRemove
         // 
-        btnRemove.Location = new System.Drawing.Point(486, 227);
+        btnRemove.Location = new System.Drawing.Point(324, 227);
         btnRemove.Name = "btnRemove";
         btnRemove.Size = new System.Drawing.Size(132, 42);
         btnRemove.TabIndex = 11;
@@ -275,7 +267,6 @@ partial class AdminForm
         Controls.Add(txtClosedFT);
         Controls.Add(txtMaxRes);
         Controls.Add(txtCapacity);
-        Controls.Add(textBox2);
         Controls.Add(txtName);
         Controls.Add(listboxFields);
         Controls.Add(btnView);
@@ -311,7 +302,6 @@ partial class AdminForm
     private System.Windows.Forms.TextBox txtResDur;
 
     private System.Windows.Forms.TextBox txtName;
-    private System.Windows.Forms.TextBox textBox2;
     private System.Windows.Forms.TextBox txtCapacity;
     private System.Windows.Forms.TextBox txtOpenFT;
     private System.Windows.Forms.TextBox txtClosedFT;

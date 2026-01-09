@@ -42,7 +42,9 @@ public partial class AdminForm : Form
     
             int index = listboxFields.SelectedIndex;
             if (index != -1){
-                btnAdd.Visible = true;
+                btnAdd.Visible = false;
+                btnRemove.Visible = true;
+                btnModify.Visible = true;
                 Teren teren = _administrareService.GetAllFields()[index];
                 txtName.Text = teren.Nume;
                 comboBoxType.SelectedItem=comboBoxType.Items[comboBoxType.Items.IndexOf(teren.TipSport)];
@@ -51,12 +53,13 @@ public partial class AdminForm : Form
                 txtClosedFT.Text = teren.intervale_indisponibile;
                 txtMaxRes.Text = teren.nr_max_rezervari.ToString();
                 txtResDur.Text = teren.durata_standard.ToString();
-                btnModify.Visible = true;
+                
         }
             else
             {
-                btnAdd.Visible = false;
-                
+                btnAdd.Visible = true;
+                btnRemove.Visible = false;
+                btnModify.Visible = false;
                 txtName.Clear();
                 comboBoxType.SelectedItem=null;
                 txtCapacity.Clear();
@@ -64,11 +67,8 @@ public partial class AdminForm : Form
                 txtClosedFT.Clear();
                 txtMaxRes.Clear();
                 txtResDur.Clear();
-                btnModify.Visible = false;
-            }
-    
-        
                 
+            }
         }
     
     private void btnView_Click(object sender, EventArgs e)
@@ -84,30 +84,53 @@ public partial class AdminForm : Form
         try
         {
             
-            string name = txtName.Text;
-            string type = comboBoxType.SelectedItem.ToString();
-            int capacity = int.Parse(txtCapacity.Text);
-            string program = txtOpenFT.Text;
-            string interv_in = txtClosedFT.Text;
-            int nr_max = int.Parse(txtMaxRes.Text);
-            int durata = int.Parse(txtResDur.Text);
-            _administrareService.AddField(name, type, capacity, program, interv_in, nr_max, durata);
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorProvider1.SetError(txtName, "Invalid name!");
+                return; // Oprim execuția aici
+            }
+
+            if (comboBoxType.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(comboBoxType, "Please select a type!");
+                return;
+            }
+
+            if (!int.TryParse(txtCapacity.Text, out int capacity))
+            {
+                errorProvider1.SetError(txtCapacity, "Invalid number!");
+                return;
+            }
+            if (!int.TryParse(txtMaxRes.Text, out int nr_max))
+            {
+                errorProvider1.SetError(txtMaxRes, "Invalid number!");
+                return;
+            }
+
+            if (!int.TryParse(txtResDur.Text, out int durata))
+            {
+                errorProvider1.SetError(txtResDur, "Invalid number!");
+                return;
+            }
+            _administrareService.AddField(
+                txtName.Text, 
+                comboBoxType.Text, 
+                capacity, 
+                txtOpenFT.Text, 
+                txtClosedFT.Text, 
+                nr_max, 
+                durata
+            );
             if (_administrareService.GetAllFields().Count != listboxFields.Items.Count)
                 listboxFields.Items.Add(_administrareService.GetAllFields().Last().Nume);
             else
-                throw new Exception("Eroare la format");
+                throw new Exception("Format error! Accepted format hh:mm-hh:mm(or hh:mm-hh:mm,hh:mm-hh:mm)");
 
         }
         catch (Exception ex)
-        {/*
-            errorProvider1.SetError(txtName,"Invalid name");
-            errorProvider1.SetError(comboBoxType,"Invalid type");
-            errorProvider1.SetError(txtCapacity,"Invalid capacity");
-            errorProvider1.SetError(txtOpenFT,"Correct format 00:00-24:00");
-            errorProvider1.SetError(txtClosedFT,"Correct format 00:00-24:00(or 00:00-24:00,00:00-24:00)");
-            errorProvider1.SetError(txtMaxRes,"Invalid number of reservations");
-            errorProvider1.SetError(txtResDur,"Invalid duration");
-            */
+        {
+            errorProvider1.SetError(txtOpenFT, ex.Message);
+            errorProvider1.SetError(txtClosedFT, ex.Message);
             MessageBox.Show(ex.Message);
         }
     }
