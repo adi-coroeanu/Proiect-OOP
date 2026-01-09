@@ -1,8 +1,9 @@
-﻿using Moq;
+﻿using Microsoft.Extensions.Logging;
+using Moq;
 using SistemRezervari.CORE.BookingLogic.Services;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
-/*
+
 namespace Tests;
 
 public class ClientDashboardServiceTests
@@ -33,17 +34,18 @@ public class ClientDashboardServiceTests
     {
         var mockedReservationList = new List<Rezervare>
         {
-            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), targetedUserId, DateTime.Now, DateTime.Now.AddHours(1), 0, 0),
-            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), targetedUserId, DateTime.Now, DateTime.Now.AddHours(1), 0, 0),
-            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, DateTime.Now.AddHours(1), 0, 0),
-            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, DateTime.Now.AddHours(1), 0, 0)
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), targetedUserId, DateTime.Now, DateTime.Now.AddHours(1)),
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), targetedUserId, DateTime.Now, DateTime.Now.AddHours(1)),
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, DateTime.Now.AddHours(1)),
+            new Rezervare(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid(), DateTime.Now, DateTime.Now.AddHours(1))
         };
         
-        var mockReservationRepo = new Mock<IRepository<Rezervare>>();
+        var mockRepository = new Mock<IFileRepository>();
+
+        var mockLogger = new Mock<ILogger>();
         
-        mockReservationRepo.Setup(repo => repo.GetCopyAll()).Returns(mockedReservationList);
+        mockRepository.Setup(repo => repo.IncarcaRezervari()).Returns(mockedReservationList);
         
-        return new ClientDashboardService(mockReservationRepo.Object);
+        return new ClientDashboardService(mockRepository.Object, mockLogger.Object);
     }
 }
-*/

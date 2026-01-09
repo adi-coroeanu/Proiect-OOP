@@ -9,6 +9,8 @@ using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
+namespace Tests;
+
 public class ReservationAdministrationTests
 {
     private readonly Mock<IFileRepository> _mockRepo;

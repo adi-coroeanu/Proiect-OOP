@@ -7,6 +7,8 @@ using SistemRezervari.CORE.AdministrationLogic;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
+namespace Tests;
+
 public class FieldAdministrationTests
 {
     private readonly Mock<IFileRepository> _mockRepo;
@@ -52,7 +54,7 @@ public class FieldAdministrationTests
       
         _sut.RemoveField(terenDeSters.Id);
 
-        Assert.Equal(1, _fakeDatabase.Count); 
+        Assert.Single(_fakeDatabase); 
         Assert.DoesNotContain(_fakeDatabase, t => t.Id == terenDeSters.Id);
 
         _mockRepo.Verify(r => r.SalveazaTerenuri(It.IsAny<List<Teren>>()), Times.Once);
