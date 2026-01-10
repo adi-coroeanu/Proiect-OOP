@@ -5,5 +5,7 @@ using SistemRezervari.CORE.Entities;
 public interface IAutentificareService
 {
     public Utilizator? Login(string username, string parola);
-    public void Signup(string username, string parola, string parolaConfirmare);
+    
+    // true - signup reusit, false - signup esuat
+    public bool Signup(string username, string parola, string parolaConfirmare);
 }
