@@ -1,5 +1,11 @@
-﻿using Moq;
+﻿using Xunit;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO; 
 using SistemRezervari.CORE.AdministrationLogic;
+using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
@@ -21,6 +27,7 @@ public class ReservationAdministrationTests
       
         _fakeFields = new List<Teren>
         {
+            
             new Teren(terenIdFotbal, "Teren Fotbal", "Fotbal", 10, "08:00-22:00", "none", 2, 120),
             new Teren(terenIdTenis, "Teren Tenis", "Tenis", 4, "08:00-20:00", "none", 2, 60)
         };
@@ -38,14 +45,12 @@ public class ReservationAdministrationTests
         _mockRepo.Setup(r => r.IncarcaRezervari()).Returns(_fakeReservations);
         _mockRepo.Setup(r => r.IncarcaTerenuri()).Returns(_fakeFields);
 
-        
         _sut = new ReservationAdministration(_mockRepo.Object);
     }
 
     [Fact]
     public void GetAllReservations_ShouldFilterByTerenId()
     {
-        
         var terenCautat = _fakeReservations[0].TerenId; 
         var result = _sut.GetAllReservations(terenCautat);
         
@@ -56,7 +61,6 @@ public class ReservationAdministrationTests
     [Fact]
     public void RemoveReservation_ShouldRemoveFromList_And_Save()
     {
-        
         var rezervareDeSters = _fakeReservations[0];
         _sut.RemoveReservation(rezervareDeSters.Id);
         
@@ -67,17 +71,16 @@ public class ReservationAdministrationTests
     [Fact]
     public void ModifyReservation_ShouldUpdateDate_And_RecalculateEndTime_Correctly()
     {
-      
         var rezervare = _fakeReservations[0]; 
-        string dataNouaString = "25/12/2025"; 
+        string dataNouaString = "25/12/2025 14:30"; 
+        
         _sut.ModifyReservation(rezervare.Id, dataNouaString);
         var rezervareModificata = _fakeReservations.First(r => r.Id == rezervare.Id);
         
-        DateTime expectedStart = new DateTime(2025, 12, 25);
+        DateTime expectedStart = new DateTime(2025, 12, 25, 14, 30, 0);
         Assert.Equal(expectedStart, rezervareModificata.DataInceput);
         
-        DateTime expectedEnd = expectedStart.AddHours(2);
-        
+        DateTime expectedEnd = expectedStart.AddMinutes(120);
         Assert.Equal(expectedEnd, rezervareModificata.DataSfarsit);
         
         Assert.Equal(rezervare.UtilizatorId, rezervareModificata.UtilizatorId);
@@ -88,9 +91,9 @@ public class ReservationAdministrationTests
     [Fact]
     public void ModifyReservation_ShouldThrow_WhenMonthIsInvalid()
     {
-     
         var id = _fakeReservations[0].Id;
-        string dataGresita = "10/15/2025"; 
+        string dataGresita = "10/15/2025 12:00"; 
+        
         var ex = Assert.Throws<InvalidDataException>(() => _sut.ModifyReservation(id, dataGresita));
         Assert.Contains("Month must be between 1 and 12", ex.Message);
     }
@@ -98,9 +101,9 @@ public class ReservationAdministrationTests
     [Fact]
     public void ModifyReservation_ShouldThrow_WhenDayIsInvalid()
     {
-        
         var id = _fakeReservations[0].Id;
-        string dataGresita = "35/05/2025";
+        string dataGresita = "35/05/2025 12:00";
+        
         var ex = Assert.Throws<InvalidDataException>(() => _sut.ModifyReservation(id, dataGresita));
         Assert.Contains("Day must be between 1 and 31", ex.Message);
     }
@@ -108,9 +111,9 @@ public class ReservationAdministrationTests
     [Fact]
     public void ModifyReservation_ShouldThrow_WhenDayIsInvalidForSpecificMonth()
     {
-     
         var id = _fakeReservations[0].Id;
-        string dataGresita = "30/02/2025"; 
+        string dataGresita = "30/02/2025 12:00"; 
+        
         var ex = Assert.Throws<InvalidDataException>(() => _sut.ModifyReservation(id, dataGresita));
         Assert.Contains($"Month 2 from year 2025 does not have 30 days", ex.Message);
     }

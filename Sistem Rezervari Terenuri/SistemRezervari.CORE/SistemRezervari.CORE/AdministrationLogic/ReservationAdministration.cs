@@ -30,10 +30,14 @@ public class ReservationAdministration : IReservationAdministration
 
     private void _ModifyReservation(Guid reservationId, string from)
     {
-        List<string> program = from.Split('/').ToList();
-        int year = int.Parse(program[2]);
-        int month = int.Parse(program[1]);
-        int day = int.Parse(program[0]);
+        List<string> date_and_hour = from.Split(" ").ToList();
+        List<string> date =  date_and_hour[0].Split("/").ToList();
+        List<string> hour  = date_and_hour[1].Split(":").ToList();
+        int year = int.Parse(date[2]);
+        int month = int.Parse(date[1]);
+        int day = int.Parse(date[0]);
+        int hours = int.Parse(hour[0]);
+        int minutes = int.Parse(hour[1]);
         if (month < 1 || month > 12) 
         {
             throw new InvalidDataException("Month must be between 1 and 12");
@@ -48,8 +52,17 @@ public class ReservationAdministration : IReservationAdministration
         {
             throw new InvalidDataException($"Month {month} from year {year} does not have {day} days!");
         }
-        
-        DateTime time = new DateTime(int.Parse(program[2]), int.Parse(program[1]), int.Parse(program[0]));
+
+        if (hours > 24 && hours < 0)
+        {
+            throw new InvalidDataException("Hours must be between 0 and 24");
+        }
+
+        if (minutes > 59 && minutes < 0)
+        {
+            throw new InvalidDataException("Minutes must be between 0 and 59");
+        }
+        DateTime time = new DateTime(year, month, day, hours, minutes,0);
         for(int i=0; i<_reservations.Count; i++)
         {
             Teren field_as = _fields.FirstOrDefault(t => t.Id == _reservations[i].TerenId);
@@ -58,7 +71,7 @@ public class ReservationAdministration : IReservationAdministration
                 var new_reservation = _reservations[i] with
                 {
                     DataInceput = time,
-                    DataSfarsit = time.AddHours((int)field_as.durata_standard/60)
+                    DataSfarsit = time.AddMinutes(field_as.durata_standard)
                 };
                 _reservations[i] =  new_reservation;
             }
