@@ -42,7 +42,7 @@ public class ClientDashboardServiceTests
         
         var mockRepository = new Mock<IFileRepository>();
 
-        var mockLogger = new Mock<ILogger>();
+        var mockLogger = new Mock<ILogger<ClientDashboardService>>();
         
         mockRepository.Setup(repo => repo.IncarcaRezervari()).Returns(mockedReservationList);
         

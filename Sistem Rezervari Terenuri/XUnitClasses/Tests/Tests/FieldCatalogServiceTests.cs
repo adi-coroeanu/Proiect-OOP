@@ -9,12 +9,12 @@ namespace Tests
     public class FieldCatalogServiceTests
     {
         private readonly Mock<IFileRepository> _mockRepo;
-        private readonly Mock<ILogger> _mockLogger;
+        private readonly Mock<ILogger<FieldCatalogService>> _mockLogger;
 
         public FieldCatalogServiceTests()
         {
             _mockRepo = new Mock<IFileRepository>();
-            _mockLogger = new Mock<ILogger>();
+            _mockLogger = new Mock<ILogger<FieldCatalogService>>();
         }
         
         private FieldCatalogService CreateServiceWithData(List<Teren> fields, List<Rezervare> reservations)
