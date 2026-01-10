@@ -1,16 +1,20 @@
-using SistemRezervari.CORE.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 using SistemRezervari.CORE.Entities;
+using SistemRezervari.CORE.Interfaces;
+
 namespace SistemRezervari.UI;
 
 public partial class AdminForm : Form
 {
     private readonly IAdministrareService _administrareService;
+    private readonly IServiceProvider _serviceProvider;
     private List<Teren> _fields;
     
-    public AdminForm(IAdministrareService administrareService)
+    public AdminForm(IAdministrareService administrareService,IServiceProvider serviceProvider)
     {
         InitializeComponent();
         _administrareService = administrareService;
+        _serviceProvider = serviceProvider;
         _fields = _administrareService.GetAllFields();
         
     }
@@ -45,6 +49,7 @@ public partial class AdminForm : Form
                 btnAdd.Visible = false;
                 btnRemove.Visible = true;
                 btnModify.Visible = true;
+                btnView.Visible = true;
                 Teren teren = _administrareService.GetAllFields()[index];
                 txtName.Text = teren.Nume;
                 comboBoxType.SelectedItem=comboBoxType.Items[comboBoxType.Items.IndexOf(teren.TipSport)];
@@ -60,6 +65,7 @@ public partial class AdminForm : Form
                 btnAdd.Visible = true;
                 btnRemove.Visible = false;
                 btnModify.Visible = false;
+                btnView.Visible = false;
                 txtName.Clear();
                 comboBoxType.SelectedItem=null;
                 txtCapacity.Clear();
@@ -73,14 +79,13 @@ public partial class AdminForm : Form
     
     private void btnView_Click(object sender, EventArgs e)
     {
-        foreach (var var in _administrareService.GetAllFields())
-        {
-            listboxFields.Items.Add(var.Nume);
-        }
+        var resform = _serviceProvider.GetRequiredService<AdminResForm>();
+        resform.SetField(_fields[listboxFields.SelectedIndex]);
+        resform.Show();
     }
     
     private void btnAdd_Click(object sender, EventArgs e)
-    {
+    {   errorProvider1.Clear();
         try
         {
             
@@ -121,17 +126,20 @@ public partial class AdminForm : Form
                 nr_max, 
                 durata
             );
-            if (_administrareService.GetAllFields().Count != listboxFields.Items.Count)
-                listboxFields.Items.Add(_administrareService.GetAllFields().Last().Nume);
-            else
-                throw new Exception("Format error! Accepted format hh:mm-hh:mm(or hh:mm-hh:mm,hh:mm-hh:mm)");
-
+            listboxFields.Items.Add(_administrareService.GetAllFields().Last().Nume);
+         
         }
         catch (Exception ex)
         {
-            errorProvider1.SetError(txtOpenFT, ex.Message);
-            errorProvider1.SetError(txtClosedFT, ex.Message);
-            MessageBox.Show(ex.Message);
+            if (ex.Message.StartsWith("Open"))
+            {
+                errorProvider1.SetError(txtOpenFT, ex.Message);
+            }
+            else
+            {
+                errorProvider1.SetError(txtClosedFT, ex.Message);
+            }
+            
         }
     }
 
@@ -150,16 +158,61 @@ public partial class AdminForm : Form
     }
     
     private void btnModify_Click(object sender, EventArgs e)
-    {
-        string name = txtName.Text;
-        string type = comboBoxType.SelectedItem.ToString();
-        int capacity = int.Parse(txtCapacity.Text);
-        string program = txtOpenFT.Text;
-        string interv_in = txtClosedFT.Text;
-        int nr_max = int.Parse(txtMaxRes.Text);
-        int durata = int.Parse(txtResDur.Text);
-        Guid id = _fields[listboxFields.SelectedIndex].Id;
-        _administrareService.ModifyField(id,name, type, capacity, program, interv_in, nr_max, durata);
+    {   errorProvider1.Clear();
+        try
+        {
+            if (string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                errorProvider1.SetError(txtName, "Invalid name!");
+                return; // Oprim execuția aici
+            }
+
+            if (comboBoxType.SelectedIndex == -1)
+            {
+                errorProvider1.SetError(comboBoxType, "Please select a type!");
+                return;
+            }
+
+            if (!int.TryParse(txtCapacity.Text, out int capacity))
+            {
+                errorProvider1.SetError(txtCapacity, "Invalid number!");
+                return;
+            }
+
+            if (!int.TryParse(txtMaxRes.Text, out int nr_max))
+            {
+                errorProvider1.SetError(txtMaxRes, "Invalid number!");
+                return;
+            }
+
+            if (!int.TryParse(txtResDur.Text, out int durata))
+            {
+                errorProvider1.SetError(txtResDur, "Invalid number!");
+                return;
+            }
+
+            Guid id = _fields[listboxFields.SelectedIndex].Id;
+            _administrareService.ModifyField(id,
+                txtName.Text,
+                comboBoxType.Text,
+                capacity,
+                txtOpenFT.Text,
+                txtClosedFT.Text,
+                nr_max,
+                durata);
+        }
+        catch (Exception ex)
+        {
+            if (ex.Message.StartsWith("Open"))
+            {
+                errorProvider1.SetError(txtOpenFT, ex.Message);
+            }
+            else
+            {
+                errorProvider1.SetError(txtClosedFT, ex.Message);
+            }
+        }
+
         btnModify.Visible = false;
         listboxFields.SelectedIndex = -1;
     }

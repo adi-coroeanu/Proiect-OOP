@@ -19,6 +19,9 @@
       <Compile Update="LogInForm.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="AdminResForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>

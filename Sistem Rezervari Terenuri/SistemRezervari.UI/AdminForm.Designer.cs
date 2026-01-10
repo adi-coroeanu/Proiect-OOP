@@ -30,6 +30,7 @@ partial class AdminForm
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
         btnView = new System.Windows.Forms.Button();
         listboxFields = new System.Windows.Forms.ListBox();
         txtName = new System.Windows.Forms.TextBox();
@@ -57,21 +58,22 @@ partial class AdminForm
         // 
         // btnView
         // 
-        btnView.Location = new System.Drawing.Point(78, 295);
+        btnView.Location = new System.Drawing.Point(2, 271);
         btnView.Name = "btnView";
         btnView.Size = new System.Drawing.Size(132, 42);
         btnView.TabIndex = 0;
         btnView.Text = "View Reservations";
         btnView.UseVisualStyleBackColor = true;
+        btnView.Visible = false;
         btnView.Click += btnView_Click;
         // 
         // listboxFields
         // 
-        listboxFields.BackColor = System.Drawing.Color.FromArgb(((int)((byte)255)), ((int)((byte)224)), ((int)((byte)192)));
+        listboxFields.BackColor = System.Drawing.Color.White;
         listboxFields.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
         listboxFields.FormattingEnabled = true;
         listboxFields.ItemHeight = 21;
-        listboxFields.Location = new System.Drawing.Point(12, 66);
+        listboxFields.Location = new System.Drawing.Point(2, 42);
         listboxFields.Name = "listboxFields";
         listboxFields.Size = new System.Drawing.Size(271, 214);
         listboxFields.TabIndex = 2;
@@ -79,42 +81,42 @@ partial class AdminForm
         // 
         // txtName
         // 
-        txtName.Location = new System.Drawing.Point(486, 80);
+        txtName.Location = new System.Drawing.Point(476, 56);
         txtName.Name = "txtName";
         txtName.Size = new System.Drawing.Size(129, 23);
         txtName.TabIndex = 3;
         // 
         // txtCapacity
         // 
-        txtCapacity.Location = new System.Drawing.Point(486, 129);
+        txtCapacity.Location = new System.Drawing.Point(476, 105);
         txtCapacity.Name = "txtCapacity";
         txtCapacity.Size = new System.Drawing.Size(129, 23);
         txtCapacity.TabIndex = 5;
         // 
         // txtOpenFT
         // 
-        txtOpenFT.Location = new System.Drawing.Point(644, 129);
+        txtOpenFT.Location = new System.Drawing.Point(476, 164);
         txtOpenFT.Name = "txtOpenFT";
         txtOpenFT.Size = new System.Drawing.Size(129, 23);
         txtOpenFT.TabIndex = 8;
         // 
         // txtClosedFT
         // 
-        txtClosedFT.Location = new System.Drawing.Point(328, 180);
+        txtClosedFT.Location = new System.Drawing.Point(634, 164);
         txtClosedFT.Name = "txtClosedFT";
         txtClosedFT.Size = new System.Drawing.Size(129, 23);
         txtClosedFT.TabIndex = 7;
         // 
         // txtMaxRes
         // 
-        txtMaxRes.Location = new System.Drawing.Point(486, 180);
+        txtMaxRes.Location = new System.Drawing.Point(634, 105);
         txtMaxRes.Name = "txtMaxRes";
         txtMaxRes.Size = new System.Drawing.Size(129, 23);
         txtMaxRes.TabIndex = 6;
         // 
         // btnAdd
         // 
-        btnAdd.Location = new System.Drawing.Point(486, 227);
+        btnAdd.Location = new System.Drawing.Point(476, 203);
         btnAdd.Name = "btnAdd";
         btnAdd.Size = new System.Drawing.Size(123, 42);
         btnAdd.TabIndex = 9;
@@ -124,24 +126,25 @@ partial class AdminForm
         // 
         // txtResDur
         // 
-        txtResDur.Location = new System.Drawing.Point(644, 180);
+        txtResDur.Location = new System.Drawing.Point(319, 164);
         txtResDur.Name = "txtResDur";
         txtResDur.Size = new System.Drawing.Size(129, 23);
         txtResDur.TabIndex = 10;
         // 
         // btnRemove
         // 
-        btnRemove.Location = new System.Drawing.Point(324, 227);
+        btnRemove.Location = new System.Drawing.Point(314, 203);
         btnRemove.Name = "btnRemove";
         btnRemove.Size = new System.Drawing.Size(132, 42);
         btnRemove.TabIndex = 11;
         btnRemove.Text = "Remove Field";
         btnRemove.UseVisualStyleBackColor = true;
+        btnRemove.Visible = false;
         btnRemove.Click += btnRemove_Click;
         // 
         // btnModify
         // 
-        btnModify.Location = new System.Drawing.Point(644, 227);
+        btnModify.Location = new System.Drawing.Point(634, 203);
         btnModify.Name = "btnModify";
         btnModify.Size = new System.Drawing.Size(129, 42);
         btnModify.TabIndex = 12;
@@ -152,6 +155,7 @@ partial class AdminForm
         // 
         // txtUser
         // 
+        txtUser.BackColor = System.Drawing.Color.Transparent;
         txtUser.Location = new System.Drawing.Point(684, 9);
         txtUser.Name = "txtUser";
         txtUser.Size = new System.Drawing.Size(129, 31);
@@ -160,7 +164,8 @@ partial class AdminForm
         // 
         // label1
         // 
-        label1.Location = new System.Drawing.Point(486, 58);
+        label1.BackColor = System.Drawing.Color.Transparent;
+        label1.Location = new System.Drawing.Point(476, 34);
         label1.Name = "label1";
         label1.Size = new System.Drawing.Size(128, 22);
         label1.TabIndex = 14;
@@ -169,7 +174,8 @@ partial class AdminForm
         // 
         // label2
         // 
-        label2.Location = new System.Drawing.Point(328, 104);
+        label2.BackColor = System.Drawing.Color.Transparent;
+        label2.Location = new System.Drawing.Point(318, 80);
         label2.Name = "label2";
         label2.Size = new System.Drawing.Size(128, 22);
         label2.TabIndex = 15;
@@ -178,7 +184,8 @@ partial class AdminForm
         // 
         // label3
         // 
-        label3.Location = new System.Drawing.Point(486, 104);
+        label3.BackColor = System.Drawing.Color.Transparent;
+        label3.Location = new System.Drawing.Point(476, 80);
         label3.Name = "label3";
         label3.Size = new System.Drawing.Size(128, 22);
         label3.TabIndex = 16;
@@ -187,7 +194,8 @@ partial class AdminForm
         // 
         // label4
         // 
-        label4.Location = new System.Drawing.Point(645, 104);
+        label4.BackColor = System.Drawing.Color.Transparent;
+        label4.Location = new System.Drawing.Point(476, 139);
         label4.Name = "label4";
         label4.Size = new System.Drawing.Size(128, 22);
         label4.TabIndex = 17;
@@ -196,7 +204,8 @@ partial class AdminForm
         // 
         // label5
         // 
-        label5.Location = new System.Drawing.Point(329, 155);
+        label5.BackColor = System.Drawing.Color.Transparent;
+        label5.Location = new System.Drawing.Point(635, 139);
         label5.Name = "label5";
         label5.Size = new System.Drawing.Size(128, 22);
         label5.TabIndex = 18;
@@ -205,7 +214,8 @@ partial class AdminForm
         // 
         // label6
         // 
-        label6.Location = new System.Drawing.Point(486, 155);
+        label6.BackColor = System.Drawing.Color.Transparent;
+        label6.Location = new System.Drawing.Point(634, 80);
         label6.Name = "label6";
         label6.Size = new System.Drawing.Size(128, 22);
         label6.TabIndex = 19;
@@ -214,7 +224,8 @@ partial class AdminForm
         // 
         // label7
         // 
-        label7.Location = new System.Drawing.Point(645, 155);
+        label7.BackColor = System.Drawing.Color.Transparent;
+        label7.Location = new System.Drawing.Point(320, 139);
         label7.Name = "label7";
         label7.Size = new System.Drawing.Size(128, 22);
         label7.TabIndex = 20;
@@ -223,8 +234,9 @@ partial class AdminForm
         // 
         // label8
         // 
+        label8.BackColor = System.Drawing.Color.Transparent;
         label8.Font = new System.Drawing.Font("Myanmar Text", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        label8.Location = new System.Drawing.Point(12, 26);
+        label8.Location = new System.Drawing.Point(2, 2);
         label8.Name = "label8";
         label8.Size = new System.Drawing.Size(257, 37);
         label8.TabIndex = 21;
@@ -239,7 +251,7 @@ partial class AdminForm
         // 
         comboBoxType.FormattingEnabled = true;
         comboBoxType.Items.AddRange(new object[] { "Fotbal", "Baschet", "Tenis" });
-        comboBoxType.Location = new System.Drawing.Point(329, 129);
+        comboBoxType.Location = new System.Drawing.Point(319, 105);
         comboBoxType.Name = "comboBoxType";
         comboBoxType.Size = new System.Drawing.Size(127, 23);
         comboBoxType.TabIndex = 22;
@@ -248,6 +260,8 @@ partial class AdminForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        BackgroundImage = ((System.Drawing.Image)resources.GetObject("$this.BackgroundImage"));
+        BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
         ClientSize = new System.Drawing.Size(825, 464);
         Controls.Add(comboBoxType);
         Controls.Add(label8);
@@ -270,6 +284,7 @@ partial class AdminForm
         Controls.Add(txtName);
         Controls.Add(listboxFields);
         Controls.Add(btnView);
+        DoubleBuffered = true;
         Text = "Admin";
         Load += AdminForm_Load;
         Click += AdminForm_Click;
