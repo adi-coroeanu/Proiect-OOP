@@ -28,6 +28,7 @@ static class Program
                 services.AddTransient<LogInForm>(); 
                 services.AddTransient<ClientForm>();
                 services.AddTransient<AdminResForm>();
+                services.AddTransient<ClientResForm>();
                 services.AddLogging(configure => configure.AddConsole());
             })
             .Build();

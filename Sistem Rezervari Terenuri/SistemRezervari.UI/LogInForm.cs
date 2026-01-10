@@ -66,6 +66,7 @@ public partial class LogInForm : Form
                 {
                     // Deschidem ClientForm
                     var clientForm = _serviceProvider.GetRequiredService<ClientForm>();
+                    clientForm.UserConfig(utilizator);
                     clientForm.FormClosed += (s, args) => this.Close();
                     clientForm.Show();
                 }

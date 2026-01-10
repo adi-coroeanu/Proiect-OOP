@@ -9,7 +9,6 @@ public partial class AdminForm : Form
     private readonly IAdministrareService _administrareService;
     private readonly IServiceProvider _serviceProvider;
     private List<Teren> _fields;
-    
     public AdminForm(IAdministrareService administrareService,IServiceProvider serviceProvider)
     {
         InitializeComponent();
@@ -18,7 +17,7 @@ public partial class AdminForm : Form
         _fields = _administrareService.GetAllFields();
         
     }
-    
+
     private void AdminForm_Load(object sender, EventArgs e)
     {
         foreach (var var in _administrareService.GetAllFields())

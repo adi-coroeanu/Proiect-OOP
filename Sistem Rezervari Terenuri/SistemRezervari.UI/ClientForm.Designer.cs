@@ -31,101 +31,143 @@ partial class ClientForm
     /// </summary>
     private void InitializeComponent()
     {
-        txtStart = new System.Windows.Forms.TextBox();
-        listBox1 = new System.Windows.Forms.ListBox();
-        txtSport = new System.Windows.Forms.TextBox();
-        txtEnd = new System.Windows.Forms.TextBox();
-        button1 = new System.Windows.Forms.Button();
+        labelLoad = new System.Windows.Forms.Label();
+        listboxFields = new System.Windows.Forms.ListBox();
+        comboBoxSport = new System.Windows.Forms.ComboBox();
+        listBoxRes = new System.Windows.Forms.ListBox();
+        labelRes = new System.Windows.Forms.Label();
+        labelUser = new System.Windows.Forms.Label();
+        btnView = new System.Windows.Forms.Button();
+        btnDelete = new System.Windows.Forms.Button();
         dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-        comboBox1 = new System.Windows.Forms.ComboBox();
         SuspendLayout();
         // 
-        // txtStart
+        // labelLoad
         // 
-        txtStart.Location = new System.Drawing.Point(51, 61);
-        txtStart.Name = "txtStart";
-        txtStart.Size = new System.Drawing.Size(171, 23);
-        txtStart.TabIndex = 1;
+        labelLoad.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        labelLoad.Location = new System.Drawing.Point(273, 42);
+        labelLoad.Name = "labelLoad";
+        labelLoad.Size = new System.Drawing.Size(235, 53);
+        labelLoad.TabIndex = 7;
+        labelLoad.Text = "Choose a sport:";
+        labelLoad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         // 
-        // listBox1
+        // listboxFields
         // 
-        listBox1.FormattingEnabled = true;
-        listBox1.ItemHeight = 15;
-        listBox1.Location = new System.Drawing.Point(344, 18);
-        listBox1.Name = "listBox1";
-        listBox1.Size = new System.Drawing.Size(235, 109);
-        listBox1.TabIndex = 3;
+        listboxFields.FormattingEnabled = true;
+        listboxFields.ItemHeight = 15;
+        listboxFields.Location = new System.Drawing.Point(370, 64);
+        listboxFields.Name = "listboxFields";
+        listboxFields.Size = new System.Drawing.Size(235, 244);
+        listboxFields.TabIndex = 3;
+        listboxFields.Visible = false;
+        listboxFields.SelectedIndexChanged += listboxFields_SelectedIndexChanged;
         // 
-        // txtSport
+        // comboBoxSport
         // 
-        txtSport.Location = new System.Drawing.Point(51, 18);
-        txtSport.Name = "txtSport";
-        txtSport.Size = new System.Drawing.Size(171, 23);
-        txtSport.TabIndex = 4;
+        comboBoxSport.FormattingEnabled = true;
+        comboBoxSport.Items.AddRange(new object[] { "Fotbal", "Baschet", "Tenis" });
+        comboBoxSport.Location = new System.Drawing.Point(313, 98);
+        comboBoxSport.Name = "comboBoxSport";
+        comboBoxSport.Size = new System.Drawing.Size(166, 23);
+        comboBoxSport.TabIndex = 4;
+        comboBoxSport.SelectedIndexChanged += comboBoxSport_SelectedIndexChanged;
         // 
-        // txtEnd
+        // listBoxRes
         // 
-        txtEnd.Location = new System.Drawing.Point(51, 104);
-        txtEnd.Name = "txtEnd";
-        txtEnd.Size = new System.Drawing.Size(171, 23);
-        txtEnd.TabIndex = 5;
+        listBoxRes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        listBoxRes.FormattingEnabled = true;
+        listBoxRes.ItemHeight = 21;
+        listBoxRes.Items.AddRange(new object[] { "No active reservation" });
+        listBoxRes.Location = new System.Drawing.Point(5, 64);
+        listBoxRes.Name = "listBoxRes";
+        listBoxRes.Size = new System.Drawing.Size(235, 235);
+        listBoxRes.TabIndex = 5;
+        listBoxRes.SelectedIndexChanged += listBoxRes_SelectedIndexChanged;
         // 
-        // button1
+        // labelRes
         // 
-        button1.Location = new System.Drawing.Point(56, 147);
-        button1.Name = "button1";
-        button1.Size = new System.Drawing.Size(165, 31);
-        button1.TabIndex = 6;
-        button1.Text = "button1";
-        button1.UseVisualStyleBackColor = true;
-        button1.Click += button1_Click;
+        labelRes.BackColor = System.Drawing.Color.Transparent;
+        labelRes.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        labelRes.Location = new System.Drawing.Point(5, 27);
+        labelRes.Name = "labelRes";
+        labelRes.Size = new System.Drawing.Size(235, 34);
+        labelRes.TabIndex = 6;
+        labelRes.Text = "Active reservations";
+        labelRes.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+        // 
+        // labelUser
+        // 
+        labelUser.BackColor = System.Drawing.Color.Transparent;
+        labelUser.Location = new System.Drawing.Point(622, 4);
+        labelUser.Name = "labelUser";
+        labelUser.Size = new System.Drawing.Size(169, 38);
+        labelUser.TabIndex = 8;
+        labelUser.Text = "Welcome back, ...";
+        // 
+        // btnView
+        // 
+        btnView.Location = new System.Drawing.Point(645, 210);
+        btnView.Name = "btnView";
+        btnView.Size = new System.Drawing.Size(127, 44);
+        btnView.TabIndex = 9;
+        btnView.Text = "View";
+        btnView.UseVisualStyleBackColor = true;
+        btnView.Visible = false;
+        btnView.Click += btnView_Click;
+        // 
+        // btnDelete
+        // 
+        btnDelete.Location = new System.Drawing.Point(5, 305);
+        btnDelete.Name = "btnDelete";
+        btnDelete.Size = new System.Drawing.Size(125, 44);
+        btnDelete.TabIndex = 10;
+        btnDelete.Text = "Delete";
+        btnDelete.UseVisualStyleBackColor = true;
+        btnDelete.Visible = false;
         // 
         // dateTimePicker1
         // 
-        dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-        dateTimePicker1.Location = new System.Drawing.Point(51, 216);
+        dateTimePicker1.Location = new System.Drawing.Point(645, 136);
         dateTimePicker1.Name = "dateTimePicker1";
-        dateTimePicker1.Size = new System.Drawing.Size(125, 23);
-        dateTimePicker1.TabIndex = 7;
-        // 
-        // comboBox1
-        // 
-        comboBox1.FormattingEnabled = true;
-        comboBox1.Items.AddRange(new object[] { "Fotbal", "Baschet", "Tenis" });
-        comboBox1.Location = new System.Drawing.Point(57, 268);
-        comboBox1.Name = "comboBox1";
-        comboBox1.Size = new System.Drawing.Size(118, 23);
-        comboBox1.TabIndex = 8;
+        dateTimePicker1.Size = new System.Drawing.Size(127, 23);
+        dateTimePicker1.TabIndex = 11;
+        dateTimePicker1.Visible = false;
         // 
         // ClientForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        BackColor = System.Drawing.SystemColors.Control;
         ClientSize = new System.Drawing.Size(800, 450);
-        Controls.Add(comboBox1);
         Controls.Add(dateTimePicker1);
-        Controls.Add(button1);
-        Controls.Add(txtEnd);
-        Controls.Add(txtSport);
-        Controls.Add(listBox1);
-        Controls.Add(txtStart);
+        Controls.Add(btnDelete);
+        Controls.Add(btnView);
+        Controls.Add(labelUser);
+        Controls.Add(labelRes);
+        Controls.Add(listBoxRes);
+        Controls.Add(comboBoxSport);
+        Controls.Add(listboxFields);
+        Controls.Add(labelLoad);
+        Location = new System.Drawing.Point(15, 15);
         Text = "Client";
+        Click += ClientForm_Click;
         ResumeLayout(false);
-        PerformLayout();
     }
-
-    private System.Windows.Forms.ComboBox comboBox1;
 
     private System.Windows.Forms.DateTimePicker dateTimePicker1;
 
-    private System.Windows.Forms.TextBox txtSport;
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button btnDelete;
 
-    private System.Windows.Forms.TextBox txtStart;
+    private System.Windows.Forms.Button btnView;
 
-    private System.Windows.Forms.ListBox listBox1;
+    private System.Windows.Forms.Label labelLoad;
+    private System.Windows.Forms.ListBox listboxFields;
+    private System.Windows.Forms.ComboBox comboBoxSport;
+    private System.Windows.Forms.ListBox listBoxRes;
+    private System.Windows.Forms.Label labelRes;
+    private System.Windows.Forms.Label labelUser;
 
-    private System.Windows.Forms.TextBox txtEnd;
     private System.Windows.Forms.TextBox textBox2;
     private System.Windows.Forms.TextBox textBox3;
 
