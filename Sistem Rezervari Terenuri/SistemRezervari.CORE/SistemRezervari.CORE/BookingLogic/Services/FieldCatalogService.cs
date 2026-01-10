@@ -87,15 +87,15 @@ public class FieldCatalogService : IFieldCatalogService
         {
             blockedPeriods = rawBlockedPeriodsString
                 .Split(",", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Select(t => TimeOnly.ParseExact(t, "HH:mm", CultureInfo.InvariantCulture))
-                .Chunk(2)
-                .Where(pair => pair.Length == 2)
-                .Select(pair => new TimeInterval 
-                { 
-                    Start = pair[0], 
-                    End = pair[1] 
+                .Select(interval => interval.Split("-", StringSplitOptions.TrimEntries))
+                .Where(parts => parts.Length == 2)
+                .Select(parts => new TimeInterval
+                {
+                    Start = TimeOnly.ParseExact(parts[0], "HH:mm", null),
+                    End = TimeOnly.ParseExact(parts[1], "HH:mm", null)
                 })
                 .ToList();
+
         }
 
         // Combinăm perioadele rezervate și blocate

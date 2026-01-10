@@ -55,7 +55,6 @@ partial class ClientForm
         // listboxFields
         // 
         listboxFields.FormattingEnabled = true;
-        listboxFields.ItemHeight = 15;
         listboxFields.Location = new System.Drawing.Point(370, 64);
         listboxFields.Name = "listboxFields";
         listboxFields.Size = new System.Drawing.Size(235, 244);
@@ -69,7 +68,7 @@ partial class ClientForm
         comboBoxSport.Items.AddRange(new object[] { "Fotbal", "Baschet", "Tenis" });
         comboBoxSport.Location = new System.Drawing.Point(313, 98);
         comboBoxSport.Name = "comboBoxSport";
-        comboBoxSport.Size = new System.Drawing.Size(166, 23);
+        comboBoxSport.Size = new System.Drawing.Size(166, 28);
         comboBoxSport.TabIndex = 4;
         comboBoxSport.SelectedIndexChanged += comboBoxSport_SelectedIndexChanged;
         // 
@@ -77,11 +76,11 @@ partial class ClientForm
         // 
         listBoxRes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
         listBoxRes.FormattingEnabled = true;
-        listBoxRes.ItemHeight = 21;
+        listBoxRes.ItemHeight = 28;
         listBoxRes.Items.AddRange(new object[] { "No active reservation" });
         listBoxRes.Location = new System.Drawing.Point(5, 64);
         listBoxRes.Name = "listBoxRes";
-        listBoxRes.Size = new System.Drawing.Size(235, 235);
+        listBoxRes.Size = new System.Drawing.Size(235, 228);
         listBoxRes.TabIndex = 5;
         listBoxRes.SelectedIndexChanged += listBoxRes_SelectedIndexChanged;
         // 
@@ -130,13 +129,13 @@ partial class ClientForm
         // 
         dateTimePicker1.Location = new System.Drawing.Point(645, 136);
         dateTimePicker1.Name = "dateTimePicker1";
-        dateTimePicker1.Size = new System.Drawing.Size(127, 23);
+        dateTimePicker1.Size = new System.Drawing.Size(127, 27);
         dateTimePicker1.TabIndex = 11;
         dateTimePicker1.Visible = false;
         // 
         // ClientForm
         // 
-        AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+        AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor = System.Drawing.SystemColors.Control;
         ClientSize = new System.Drawing.Size(800, 450);
@@ -150,6 +149,7 @@ partial class ClientForm
         Controls.Add(listboxFields);
         Controls.Add(labelLoad);
         Location = new System.Drawing.Point(15, 15);
+        Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
         Text = "Client";
         Click += ClientForm_Click;
         ResumeLayout(false);
