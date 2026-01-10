@@ -200,6 +200,7 @@ public partial class AdminForm : Form
                 txtClosedFT.Text,
                 nr_max,
                 durata);
+            listboxFields.Items[listboxFields.SelectedIndex] = txtName.Text;
         }
         catch (Exception ex)
         {
