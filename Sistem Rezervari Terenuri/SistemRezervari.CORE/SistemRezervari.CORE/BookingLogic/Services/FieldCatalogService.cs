@@ -12,9 +12,9 @@ public class FieldCatalogService : IFieldCatalogService
     private readonly List<Rezervare> _reservationList;
     private readonly List<Teren> _fieldList;
     private List<Teren>? _filteredFieldList;
-    private readonly ILogger _logger;
+    private readonly ILogger<FieldCatalogService> _logger;
     
-    public FieldCatalogService(IFileRepository repository, ILogger logger)
+    public FieldCatalogService(IFileRepository repository, ILogger<FieldCatalogService> logger)
     {
         _reservationList = repository.IncarcaRezervari();
         _fieldList = repository.IncarcaTerenuri();

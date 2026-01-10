@@ -9,8 +9,8 @@ namespace SistemRezervari.CORE.BookingLogic.Services;
 public class ClientDashboardService : IClientDashboardService
 {
     private readonly List<Rezervare> _reservationList;
-    private readonly ILogger _logger;
-    public ClientDashboardService(IFileRepository repository, ILogger logger)
+    private readonly ILogger<ClientDashboardService> _logger;
+    public ClientDashboardService(IFileRepository repository, ILogger<ClientDashboardService> logger)
     {
         _reservationList = repository.IncarcaRezervari();
         _logger = logger;

@@ -11,9 +11,9 @@ public class ClientReservationService : IClientReservationService
     private readonly IFileRepository _repository;
     private readonly List<Rezervare> _reservationList;
     private readonly List<Teren> _fieldList;
-    private readonly ILogger _logger;
+    private readonly ILogger<ClientReservationService> _logger;
 
-    public ClientReservationService(IFileRepository repository, ILogger logger)
+    public ClientReservationService(IFileRepository repository, ILogger<ClientReservationService> logger)
     {
         _repository = repository;
         _reservationList = _repository.IncarcaRezervari();

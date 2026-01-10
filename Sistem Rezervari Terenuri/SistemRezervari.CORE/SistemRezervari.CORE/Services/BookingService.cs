@@ -12,12 +12,16 @@ public class BookingService : IBookingService
     private readonly IClientReservationService _clientReservationService;
     private readonly IClientDashboardService _clientDashboardService;
     
-    public BookingService(IFileRepository repository, ILogger logger)
+    public BookingService(IFileRepository repository, ILoggerFactory loggerFactory)
     {
- 
-        _fieldCatalogService = new FieldCatalogService(repository, logger);
-        _clientReservationService = new ClientReservationService(repository, logger);
-        _clientDashboardService = new ClientDashboardService(repository, logger);
+        var logger = loggerFactory.CreateLogger<BookingService>();
+        var loggerFieldCatalogService = loggerFactory.CreateLogger<FieldCatalogService>();
+        var loggerClientReservationService = loggerFactory.CreateLogger<ClientReservationService>();
+        var loggerClientDashboardService = loggerFactory.CreateLogger<ClientDashboardService>();
+        
+        _fieldCatalogService = new FieldCatalogService(repository, loggerFieldCatalogService);
+        _clientReservationService = new ClientReservationService(repository, loggerClientReservationService);
+        _clientDashboardService = new ClientDashboardService(repository, loggerClientDashboardService);
             
         logger.LogInformation("FieldCatalogService initialized successfully.");
     }

@@ -8,9 +8,9 @@ public class AutentificareService : IAutentificareService
 {
     private readonly IFileRepository _repository;
     private readonly List<Utilizator> _listaUtilizatori;
-    private readonly ILogger _logger;
+    private readonly ILogger<AutentificareService> _logger;
 
-    public AutentificareService(IFileRepository repository, ILogger logger)
+    public AutentificareService(IFileRepository repository, ILogger<AutentificareService> logger)
     {
         _repository = repository;
         _listaUtilizatori = _repository.IncarcaUtilizatori();
