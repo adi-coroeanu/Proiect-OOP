@@ -37,7 +37,6 @@ public partial class ClientForm : Form
 
     private void comboBoxSport_SelectedIndexChanged(object sender, EventArgs e)
     {
-        dateTimePicker1.Visible = true;
         comboBoxSport.Location = new Point(622, 64);
         listboxFields.Visible = true;
         labelLoad.Visible = false;
@@ -58,10 +57,12 @@ public partial class ClientForm : Form
         if (listboxFields.SelectedIndex != -1)
         {
             btnView.Visible = true;
+            dateTimePicker1.Visible = true;
         }
         else
         {
             btnView.Visible = false;
+            dateTimePicker1.Visible = false;
         }
     }
 
@@ -69,11 +70,11 @@ public partial class ClientForm : Form
     {
         if (listBoxRes.SelectedIndex != -1)
         {
-            btnDelete.Visible = true;
+            btnCancel.Visible = true;
         }
         else
         {
-            btnDelete.Visible = false;
+            btnCancel.Visible = false;
         }
     }
 

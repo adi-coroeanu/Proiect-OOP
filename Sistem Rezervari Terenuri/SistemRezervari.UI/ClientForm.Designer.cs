@@ -38,7 +38,7 @@ partial class ClientForm
         labelRes = new System.Windows.Forms.Label();
         labelUser = new System.Windows.Forms.Label();
         btnView = new System.Windows.Forms.Button();
-        btnDelete = new System.Windows.Forms.Button();
+        btnCancel = new System.Windows.Forms.Button();
         dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
         SuspendLayout();
         // 
@@ -116,15 +116,15 @@ partial class ClientForm
         btnView.Visible = false;
         btnView.Click += btnView_Click;
         // 
-        // btnDelete
+        // btnCancel
         // 
-        btnDelete.Location = new System.Drawing.Point(5, 305);
-        btnDelete.Name = "btnDelete";
-        btnDelete.Size = new System.Drawing.Size(125, 44);
-        btnDelete.TabIndex = 10;
-        btnDelete.Text = "Delete";
-        btnDelete.UseVisualStyleBackColor = true;
-        btnDelete.Visible = false;
+        btnCancel.Location = new System.Drawing.Point(5, 305);
+        btnCancel.Name = "btnCancel";
+        btnCancel.Size = new System.Drawing.Size(125, 44);
+        btnCancel.TabIndex = 10;
+        btnCancel.Text = "Cancel";
+        btnCancel.UseVisualStyleBackColor = true;
+        btnCancel.Visible = false;
         // 
         // dateTimePicker1
         // 
@@ -141,7 +141,7 @@ partial class ClientForm
         BackColor = System.Drawing.SystemColors.Control;
         ClientSize = new System.Drawing.Size(800, 450);
         Controls.Add(dateTimePicker1);
-        Controls.Add(btnDelete);
+        Controls.Add(btnCancel);
         Controls.Add(btnView);
         Controls.Add(labelUser);
         Controls.Add(labelRes);
@@ -157,7 +157,7 @@ partial class ClientForm
 
     private System.Windows.Forms.DateTimePicker dateTimePicker1;
 
-    private System.Windows.Forms.Button btnDelete;
+    private System.Windows.Forms.Button btnCancel;
 
     private System.Windows.Forms.Button btnView;
 
