@@ -9,6 +9,6 @@ public interface IFieldAdministration
     public List<Teren> GetAllFields();
     public Teren GetFieldById(Guid terenId);
     public void ModifyField(Guid terenId,string newFieldName, string newFieldType, int newFieldCapacity, string newFieldProgram,string newFieldRestrictions,int nr_max_rezervari, int durata_standard);
-    
+    public Utilizator GetUserById(Guid userId);
 
 }

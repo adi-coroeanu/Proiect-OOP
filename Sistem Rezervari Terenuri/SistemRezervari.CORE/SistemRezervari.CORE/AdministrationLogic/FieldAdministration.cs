@@ -10,12 +10,13 @@ public class FieldAdministration : IFieldAdministration
 
     private List<Teren> _fields;
     private IFileRepository _fileRepository;
-    
+    private List<Utilizator> _users;
 
     public FieldAdministration(IFileRepository fileRepository)
     {
         _fileRepository = fileRepository;
         _fields = _fileRepository.IncarcaTerenuri();
+        _users = _fileRepository.IncarcaUtilizatori();
     }
 
     #region Private Methods
@@ -106,6 +107,11 @@ public class FieldAdministration : IFieldAdministration
        
     }
 
+
+    private Utilizator _GetUserById(Guid userId)
+    {
+        return _users.FirstOrDefault(x => x.Id == userId);
+    }
     #endregion
 
     #region Public Methods
@@ -146,6 +152,10 @@ public class FieldAdministration : IFieldAdministration
             _fileRepository.SalveazaTerenuri(_fields);
         }
 
+        public Utilizator GetUserById(Guid userId)
+        {
+            return _GetUserById(userId);
+        }
 
         #endregion
     }

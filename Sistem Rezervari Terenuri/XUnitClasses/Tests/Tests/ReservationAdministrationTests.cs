@@ -1,11 +1,5 @@
-﻿using Xunit;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO; 
+﻿using Moq;
 using SistemRezervari.CORE.AdministrationLogic;
-using SistemRezervari.CORE.Data;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
 
@@ -98,7 +92,7 @@ public class ReservationAdministrationTests
         var id = _fakeReservations[0].Id;
         string dataGresita = "10/15/2025"; 
         var ex = Assert.Throws<InvalidDataException>(() => _sut.ModifyReservation(id, dataGresita));
-        Assert.Contains("Luna trebuie să fie între 1 și 12", ex.Message);
+        Assert.Contains("Month must be between 1 and 12", ex.Message);
     }
 
     [Fact]
@@ -108,7 +102,7 @@ public class ReservationAdministrationTests
         var id = _fakeReservations[0].Id;
         string dataGresita = "35/05/2025";
         var ex = Assert.Throws<InvalidDataException>(() => _sut.ModifyReservation(id, dataGresita));
-        Assert.Contains("Ziua trebuie să fie între 1 și 31", ex.Message);
+        Assert.Contains("Day must be between 1 and 31", ex.Message);
     }
 
     [Fact]
@@ -118,7 +112,7 @@ public class ReservationAdministrationTests
         var id = _fakeReservations[0].Id;
         string dataGresita = "30/02/2025"; 
         var ex = Assert.Throws<InvalidDataException>(() => _sut.ModifyReservation(id, dataGresita));
-        Assert.Contains("Luna 2 din anul 2025 nu are 30 zile", ex.Message);
+        Assert.Contains($"Month 2 from year 2025 does not have 30 days", ex.Message);
     }
 
     [Fact]

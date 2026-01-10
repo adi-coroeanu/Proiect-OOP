@@ -1,8 +1,4 @@
-﻿using Xunit;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Moq;
 using SistemRezervari.CORE.AdministrationLogic;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
@@ -14,7 +10,7 @@ public class FieldAdministrationTests
     private readonly Mock<IFileRepository> _mockRepo;
     private readonly FieldAdministration _sut; 
     private readonly List<Teren> _fakeDatabase;
-
+    private readonly List<Utilizator> _fakeUsers;
     public FieldAdministrationTests()
     {
         
@@ -24,10 +20,15 @@ public class FieldAdministrationTests
             new Teren(Guid.NewGuid(), "Teren Fotbal", "Fotbal", 10, "08:00-22:00", "none", 2, 60),
             new Teren(Guid.NewGuid(), "Teren Tenis", "Tenis", 4, "10:00-20:00", "12:00-13:00", 1, 60)
         };
-
-       
+        
+        _fakeUsers = new List<Utilizator>
+        {
+            new Utilizator(Guid.NewGuid(), "IonPopescu", "parola123", "Client"),
+            new Utilizator(Guid.NewGuid(), "AdminSef", "admin123", "Admin")
+        };
         _mockRepo = new Mock<IFileRepository>();
         _mockRepo.Setup(repo => repo.IncarcaTerenuri()).Returns(_fakeDatabase);
+        _mockRepo.Setup(repo => repo.IncarcaUtilizatori()).Returns(_fakeUsers);
         
         _sut = new FieldAdministration(_mockRepo.Object);
     }
@@ -105,32 +106,52 @@ public class FieldAdministrationTests
     }
 
     [Fact]
-    public void ModifyField_ShouldNOT_Update_WhenProgramIsInvalid()
+    public void ModifyField_ShouldThrow_WhenProgramIsInvalid()
     {
        
         var teren = _fakeDatabase[0];
         string programInvalid = "25:00-99:00"; 
         
-        _sut.ModifyField(teren.Id, "Nume Nou", "Fotbal", 10, programInvalid, "none", 2, 60);
+        var exception = Assert.Throws<Exception>(() => 
+            _sut.ModifyField(teren.Id, "Nume Nou", "Fotbal", 10, programInvalid, "none", 2, 60)
+        );
         
-        var terenNemodificat = _fakeDatabase.First(t => t.Id == teren.Id);
-       
-        Assert.Equal("Teren Sintetic Fotbal", "Teren Sintetic Fotbal");
-        Assert.NotEqual("Nume Nou", terenNemodificat.Nume);
+        Assert.Contains("Open from/to error", exception.Message);
     }
 
     [Fact]
-    public void ModifyField_ShouldNOT_Update_WhenRestrictionsAreInvalid()
+    public void ModifyField_ShouldThrow_WhenRestrictionsAreInvalid()
     {
        
         var teren = _fakeDatabase[0];
-        
         string programValid = "08:00-22:00";
         string restrictieInvalida = "12:00-13:00, TextAiurea"; 
+
+      
+        var exception = Assert.Throws<Exception>(() => 
+            _sut.ModifyField(teren.Id, "Nume Nou", "Fotbal", 10, programValid, restrictieInvalida, 2, 60)
+        );
+
+        Assert.Contains("Closed intervals error", exception.Message);
+    }
+    
+    [Fact]
+    public void GetUserById_ShouldReturnCorrectUser_WhenIdExists()
+    {
+        var expectedUser = _fakeUsers[0];
+        var result = _sut.GetUserById(expectedUser.Id);
         
-        _sut.ModifyField(teren.Id, "Nume Nou", "Fotbal", 10, programValid, restrictieInvalida, 2, 60);
-        
-        var terenNemodificat = _fakeDatabase.First(t => t.Id == teren.Id);
-        Assert.NotEqual("Nume Nou", terenNemodificat.Nume);
+        Assert.NotNull(result); 
+        Assert.Equal(expectedUser.Id, result.Id);
+        Assert.Equal(expectedUser.Username, result.Username); 
+    }
+
+    [Fact]
+    public void GetUserById_ShouldReturnNull_WhenIdDoesNotExist()
+    {
+       
+        Guid randomId = Guid.NewGuid(); 
+        var result = _sut.GetUserById(randomId);
+        Assert.Null(result); 
     }
 }

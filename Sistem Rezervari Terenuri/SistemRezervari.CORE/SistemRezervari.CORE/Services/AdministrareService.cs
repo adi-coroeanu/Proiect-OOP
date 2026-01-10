@@ -71,4 +71,10 @@ public class AdministrareService: IAdministrareService
         return _reservationAdministration.GetAllReservations(terenId);
     }
 
+    public Utilizator GetUserById(Guid userId)
+    {
+        _logger.LogInformation($"User has been sent");
+        return _fieldAdministration.GetUserById(userId);
+    }
+
 }

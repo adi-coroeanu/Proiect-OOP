@@ -14,4 +14,5 @@ public interface IAdministrareService
 	public void RemoveReservation(Guid reservationId);	
 	public void ModifyReservation(Guid reservationId, string from);//parametrii vor contine noile date ale unei rezervari
 	public List<Rezervare> GetAllReservations(Guid terenId);
+	public Utilizator GetUserById(Guid userId);
 }
