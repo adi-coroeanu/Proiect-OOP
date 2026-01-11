@@ -31,6 +31,7 @@ partial class ClientForm
     /// </summary>
     private void InitializeComponent()
     {
+        ComponentResourceManager resources = new ComponentResourceManager(typeof(ClientForm));
         labelLoad = new Label();
         listboxFields = new ListBox();
         comboBoxSport = new ComboBox();
@@ -39,13 +40,14 @@ partial class ClientForm
         labelUser = new Label();
         btnView = new Button();
         dateTimePicker1 = new DateTimePicker();
-        button1 = new Button();
         btnCancel = new Button();
         SuspendLayout();
         // 
         // labelLoad
         // 
+        labelLoad.BackColor = Color.Transparent;
         labelLoad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        labelLoad.ForeColor = SystemColors.ControlText;
         labelLoad.Location = new Point(312, 56);
         labelLoad.Name = "labelLoad";
         labelLoad.Size = new Size(269, 71);
@@ -56,10 +58,10 @@ partial class ClientForm
         // listboxFields
         // 
         listboxFields.FormattingEnabled = true;
-        listboxFields.Location = new Point(423, 85);
+        listboxFields.Location = new Point(416, 73);
         listboxFields.Margin = new Padding(3, 4, 3, 4);
         listboxFields.Name = "listboxFields";
-        listboxFields.Size = new Size(268, 324);
+        listboxFields.Size = new Size(268, 264);
         listboxFields.TabIndex = 3;
         listboxFields.Visible = false;
         listboxFields.SelectedIndexChanged += listboxFields_SelectedIndexChanged;
@@ -110,7 +112,7 @@ partial class ClientForm
         // 
         // btnView
         // 
-        btnView.Location = new Point(737, 280);
+        btnView.Location = new Point(730, 268);
         btnView.Margin = new Padding(3, 4, 3, 4);
         btnView.Name = "btnView";
         btnView.Size = new Size(145, 59);
@@ -122,21 +124,12 @@ partial class ClientForm
         // 
         // dateTimePicker1
         // 
-        dateTimePicker1.Location = new Point(737, 181);
+        dateTimePicker1.Location = new Point(730, 169);
         dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
         dateTimePicker1.Name = "dateTimePicker1";
         dateTimePicker1.Size = new Size(145, 27);
         dateTimePicker1.TabIndex = 11;
         dateTimePicker1.Visible = false;
-        // 
-        // button1
-        // 
-        button1.Location = new Point(0, 0);
-        button1.Name = "button1";
-        button1.Size = new Size(94, 29);
-        button1.TabIndex = 12;
-        button1.Text = "button1";
-        button1.UseVisualStyleBackColor = true;
         // 
         // btnCancel
         // 
@@ -154,9 +147,10 @@ partial class ClientForm
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = SystemColors.Control;
+        BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(914, 600);
         Controls.Add(btnCancel);
-        Controls.Add(button1);
         Controls.Add(dateTimePicker1);
         Controls.Add(btnView);
         Controls.Add(labelUser);
@@ -165,6 +159,7 @@ partial class ClientForm
         Controls.Add(comboBoxSport);
         Controls.Add(listboxFields);
         Controls.Add(labelLoad);
+        DoubleBuffered = true;
         Location = new Point(15, 15);
         Margin = new Padding(3, 4, 3, 4);
         Name = "ClientForm";
@@ -188,7 +183,5 @@ partial class ClientForm
     private System.Windows.Forms.TextBox textBox3;
 
     #endregion
-
-    private Button button1;
     private Button btnCancel;
 }

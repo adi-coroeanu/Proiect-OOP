@@ -25,6 +25,11 @@
       <Compile Update="ClientResForm.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="Properties\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -61,6 +66,10 @@
       <None Remove="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\rezervari.json" />
       <None Remove="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\terenuri.json" />
       <None Remove="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\utilizatori.json" />
+      <EmbeddedResource Update="Properties\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>

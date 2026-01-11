@@ -31,6 +31,7 @@ partial class ClientResForm
     /// </summary>
     private void InitializeComponent()
     {
+        ComponentResourceManager resources = new ComponentResourceManager(typeof(ClientResForm));
         listBoxAvailable = new ListBox();
         btnReservation = new Button();
         SuspendLayout();
@@ -46,7 +47,7 @@ partial class ClientResForm
         // 
         // btnReservation
         // 
-        btnReservation.Location = new Point(384, 218);
+        btnReservation.Location = new Point(367, 342);
         btnReservation.Name = "btnReservation";
         btnReservation.Size = new Size(175, 63);
         btnReservation.TabIndex = 1;
@@ -58,9 +59,12 @@ partial class ClientResForm
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
+        BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(914, 600);
         Controls.Add(btnReservation);
         Controls.Add(listBoxAvailable);
+        DoubleBuffered = true;
         Margin = new Padding(3, 4, 3, 4);
         Name = "ClientResForm";
         Text = "ClientResForm";

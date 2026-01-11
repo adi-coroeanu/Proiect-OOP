@@ -56,6 +56,7 @@ public partial class ClientForm : Form
         listboxFields.Visible = true;
         labelLoad.Visible = false;
         listboxFields.Items.Clear();
+        listBoxRes.SelectedIndex = -1; // Deselect reservations
         List<Teren> terenuri = _bookingService.SearchFieldsBySport(comboBoxSport.SelectedItem.ToString());
         foreach (var item in terenuri)
             listboxFields.Items.Add(item.Nume);
@@ -69,6 +70,8 @@ public partial class ClientForm : Form
 
     private void listboxFields_SelectedIndexChanged(object sender, EventArgs e)
     {
+        listBoxRes.SelectedIndex = -1; // Deselect reservations when selecting a field
+        
         if (listboxFields.SelectedIndex != -1)
         {
             btnView.Visible = true;
@@ -83,6 +86,8 @@ public partial class ClientForm : Form
 
     private void listBoxRes_SelectedIndexChanged(object sender, EventArgs e)
     {
+        listboxFields.SelectedIndex = -1; // Deselect fields when selecting a reservation
+        
         if (listBoxRes.SelectedIndex != -1)
         {
             btnCancel.Visible = true;
