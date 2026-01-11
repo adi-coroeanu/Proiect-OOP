@@ -34,6 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="bin\Debug\net8.0-windows\" />
       <Folder Include="Images\" />
       <Folder Include="MocksUI\" />
     </ItemGroup>
@@ -44,11 +45,17 @@
       </Content>
       <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\terenuri.json" />
       <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\utilizatori.json" />
+      <Content Update="Data\FisiereJson\rezervari.json">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
       <None Include="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\*.json">
         <Link>Data\FisiereJson\%(Filename)%(Extension)</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>

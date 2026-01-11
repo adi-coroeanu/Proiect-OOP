@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SistemRezervari.CORE.Entities;
 using SistemRezervari.CORE.Interfaces;
@@ -18,34 +19,38 @@ public class JsonRepository : IFileRepository
     private readonly string _pathRezervari;
     private readonly string _pathUtilizatori;
 
-    public JsonRepository(ILogger<JsonRepository> logger)
+    public JsonRepository(ILogger<JsonRepository> logger, IConfiguration config)
     {
         _logger = logger;
 
-        // Folosim direct BaseDirectory - aici vor fi copiate fișierele
-        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+        // 1. Găsim calea către folderul UI (metoda care deja mergea bine)
+        string projectRoot = GetProjectSourcePath();
+        _directoryPath = Path.Combine(projectRoot, "Data", "FisiereJson");
 
-        // Construim căile către fișierele JSON
-        _directoryPath = Path.Combine(baseDir, "Data", "FisiereJson");
+        // 2. Setăm căile fișierelor
         _pathTerenuri = Path.Combine(_directoryPath, "terenuri.json");
         _pathRezervari = Path.Combine(_directoryPath, "rezervari.json");
         _pathUtilizatori = Path.Combine(_directoryPath, "utilizatori.json");
+    }
+    
+    private string GetProjectSourcePath()
+    {
+        string currentDir = AppDomain.CurrentDomain.BaseDirectory;
+        DirectoryInfo directory = new DirectoryInfo(currentDir);
 
-        // Creează directorul dacă nu există (pentru salvări ulterioare)
-        if (!Directory.Exists(_directoryPath))
+        // Urcă în sus (părinte cu părinte) până găsește un fișier .csproj
+        while (directory != null)
         {
-            Directory.CreateDirectory(_directoryPath);
+            if (directory.GetFiles("*.csproj").Length > 0)
+            {
+                return directory.FullName;
+            }
+            directory = directory.Parent;
         }
 
-        // Log pentru debugging
-        _logger.LogInformation("BaseDirectory: {BaseDir}", baseDir);
-        _logger.LogInformation("Directory JSON: {DirectoryPath}", _directoryPath);
-        _logger.LogInformation("Terenuri: {Path} - Exists: {Exists}", _pathTerenuri, File.Exists(_pathTerenuri));
-        _logger.LogInformation("Rezervari: {Path} - Exists: {Exists}", _pathRezervari, File.Exists(_pathRezervari));
-        _logger.LogInformation("Utilizatori: {Path} - Exists: {Exists}", _pathUtilizatori, File.Exists(_pathUtilizatori));
+        // Dacă nu găsește nimic, returnează folderul curent
+        return currentDir;
     }
-
-
     // --- IMPLEMENTARE PENTRU TERENURI ---
 
     public List<Teren> IncarcaTerenuri()
