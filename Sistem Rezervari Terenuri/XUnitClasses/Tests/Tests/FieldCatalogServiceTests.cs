@@ -137,8 +137,7 @@ namespace Tests
             var fieldId = Guid.NewGuid();
             var fields = new List<Teren>
             {
-                // Program 10-14, Blocat intre 11 si 12
-                new Teren(fieldId, "Teren Test", "Fotbal", 10, "10:00-14:00", "11:00, 12:00", 1, 60)
+                new Teren(fieldId, "Teren Test", "Fotbal", 10, "10:00-14:00", "11:00-12:00", 1, 60)
             };
             
             var service = CreateServiceWithData(fields, new List<Rezervare>());

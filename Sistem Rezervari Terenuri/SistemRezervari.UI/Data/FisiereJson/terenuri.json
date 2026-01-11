@@ -38,5 +38,15 @@
     "intervale_indisponibile": "12:00-13:00,19:00-20:00",
     "nr_max_rezervari": 1,
     "durata_standard": 60
+  },
+  {
+    "Id": "d733a81a-e4ca-4294-9fc1-68c3c054480b",
+    "Nume": "Teren nou",
+    "TipSport": "Baschet",
+    "Capacitate": 100,
+    "program_de_functionare": "10:00-22:00",
+    "intervale_indisponibile": "",
+    "nr_max_rezervari": 4,
+    "durata_standard": 60
   }
 ]
