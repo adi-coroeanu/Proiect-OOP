@@ -38,35 +38,5 @@
     "intervale_indisponibile": "12:00-13:00,19:00-20:00",
     "nr_max_rezervari": 1,
     "durata_standard": 60
-  },
-  {
-    "Id": "ea4035c4-0188-4ff0-9721-0053cd26d6b1",
-    "Nume": "Arena Francisc von Neumann",
-    "TipSport": "Fotbal",
-    "Capacitate": 22,
-    "program_de_functionare": "10:00-22:00",
-    "intervale_indisponibile": "12:00-14:00",
-    "nr_max_rezervari": 2,
-    "durata_standard": 90
-  },
-  {
-    "Id": "563ad34d-5e34-4e91-b93e-52250f936e6e",
-    "Nume": "Arena Adi",
-    "TipSport": "Fotbal",
-    "Capacitate": 100,
-    "program_de_functionare": "10:00-22:00",
-    "intervale_indisponibile": "none",
-    "nr_max_rezervari": 10,
-    "durata_standard": 45
-  },
-  {
-    "Id": "66bbc0be-fd08-473c-b3f3-4a436d2b9db7",
-    "Nume": "Arena C#",
-    "TipSport": "Tenis",
-    "Capacitate": 10,
-    "program_de_functionare": "10:00-20:00",
-    "intervale_indisponibile": "",
-    "nr_max_rezervari": 5,
-    "durata_standard": 90
   }
 ]

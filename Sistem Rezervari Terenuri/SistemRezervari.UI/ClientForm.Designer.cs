@@ -31,34 +31,35 @@ partial class ClientForm
     /// </summary>
     private void InitializeComponent()
     {
-        labelLoad = new System.Windows.Forms.Label();
-        listboxFields = new System.Windows.Forms.ListBox();
-        comboBoxSport = new System.Windows.Forms.ComboBox();
-        listBoxRes = new System.Windows.Forms.ListBox();
-        labelRes = new System.Windows.Forms.Label();
-        labelUser = new System.Windows.Forms.Label();
-        btnView = new System.Windows.Forms.Button();
-        btnCancel = new System.Windows.Forms.Button();
-        dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+        labelLoad = new Label();
+        listboxFields = new ListBox();
+        comboBoxSport = new ComboBox();
+        listBoxRes = new ListBox();
+        labelRes = new Label();
+        labelUser = new Label();
+        btnView = new Button();
+        dateTimePicker1 = new DateTimePicker();
+        button1 = new Button();
+        btnCancel = new Button();
         SuspendLayout();
         // 
         // labelLoad
         // 
-        labelLoad.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        labelLoad.Location = new System.Drawing.Point(273, 42);
+        labelLoad.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        labelLoad.Location = new Point(312, 56);
         labelLoad.Name = "labelLoad";
-        labelLoad.Size = new System.Drawing.Size(235, 53);
+        labelLoad.Size = new Size(269, 71);
         labelLoad.TabIndex = 7;
         labelLoad.Text = "Choose a sport:";
-        labelLoad.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        labelLoad.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // listboxFields
         // 
         listboxFields.FormattingEnabled = true;
-        listboxFields.ItemHeight = 15;
-        listboxFields.Location = new System.Drawing.Point(370, 64);
+        listboxFields.Location = new Point(423, 85);
+        listboxFields.Margin = new Padding(3, 4, 3, 4);
         listboxFields.Name = "listboxFields";
-        listboxFields.Size = new System.Drawing.Size(235, 244);
+        listboxFields.Size = new Size(268, 324);
         listboxFields.TabIndex = 3;
         listboxFields.Visible = false;
         listboxFields.SelectedIndexChanged += listboxFields_SelectedIndexChanged;
@@ -67,81 +68,96 @@ partial class ClientForm
         // 
         comboBoxSport.FormattingEnabled = true;
         comboBoxSport.Items.AddRange(new object[] { "Fotbal", "Baschet", "Tenis" });
-        comboBoxSport.Location = new System.Drawing.Point(313, 98);
+        comboBoxSport.Location = new Point(358, 131);
+        comboBoxSport.Margin = new Padding(3, 4, 3, 4);
         comboBoxSport.Name = "comboBoxSport";
-        comboBoxSport.Size = new System.Drawing.Size(166, 23);
+        comboBoxSport.Size = new Size(189, 28);
         comboBoxSport.TabIndex = 4;
         comboBoxSport.SelectedIndexChanged += comboBoxSport_SelectedIndexChanged;
         // 
         // listBoxRes
         // 
-        listBoxRes.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
+        listBoxRes.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         listBoxRes.FormattingEnabled = true;
-        listBoxRes.ItemHeight = 21;
+        listBoxRes.ItemHeight = 28;
         listBoxRes.Items.AddRange(new object[] { "No active reservation" });
-        listBoxRes.Location = new System.Drawing.Point(5, 64);
+        listBoxRes.Location = new Point(6, 85);
+        listBoxRes.Margin = new Padding(3, 4, 3, 4);
         listBoxRes.Name = "listBoxRes";
-        listBoxRes.Size = new System.Drawing.Size(235, 235);
+        listBoxRes.Size = new Size(268, 312);
         listBoxRes.TabIndex = 5;
         listBoxRes.SelectedIndexChanged += listBoxRes_SelectedIndexChanged;
         // 
         // labelRes
         // 
-        labelRes.BackColor = System.Drawing.Color.Transparent;
-        labelRes.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)0));
-        labelRes.Location = new System.Drawing.Point(5, 27);
+        labelRes.BackColor = Color.Transparent;
+        labelRes.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        labelRes.Location = new Point(6, 36);
         labelRes.Name = "labelRes";
-        labelRes.Size = new System.Drawing.Size(235, 34);
+        labelRes.Size = new Size(269, 45);
         labelRes.TabIndex = 6;
         labelRes.Text = "Active reservations";
-        labelRes.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+        labelRes.TextAlign = ContentAlignment.BottomLeft;
         // 
         // labelUser
         // 
-        labelUser.BackColor = System.Drawing.Color.Transparent;
-        labelUser.Location = new System.Drawing.Point(622, 4);
+        labelUser.BackColor = Color.Transparent;
+        labelUser.Location = new Point(711, 5);
         labelUser.Name = "labelUser";
-        labelUser.Size = new System.Drawing.Size(169, 38);
+        labelUser.Size = new Size(193, 51);
         labelUser.TabIndex = 8;
         labelUser.Text = "Welcome back, ...";
         // 
         // btnView
         // 
-        btnView.Location = new System.Drawing.Point(645, 210);
+        btnView.Location = new Point(737, 280);
+        btnView.Margin = new Padding(3, 4, 3, 4);
         btnView.Name = "btnView";
-        btnView.Size = new System.Drawing.Size(127, 44);
+        btnView.Size = new Size(145, 59);
         btnView.TabIndex = 9;
         btnView.Text = "View";
         btnView.UseVisualStyleBackColor = true;
         btnView.Visible = false;
         btnView.Click += btnView_Click;
         // 
-        // btnCancel
-        // 
-        btnCancel.Location = new System.Drawing.Point(5, 305);
-        btnCancel.Name = "btnCancel";
-        btnCancel.Size = new System.Drawing.Size(125, 44);
-        btnCancel.TabIndex = 10;
-        btnCancel.Text = "Cancel";
-        btnCancel.UseVisualStyleBackColor = true;
-        btnCancel.Visible = false;
-        // 
         // dateTimePicker1
         // 
-        dateTimePicker1.Location = new System.Drawing.Point(645, 136);
+        dateTimePicker1.Location = new Point(737, 181);
+        dateTimePicker1.Margin = new Padding(3, 4, 3, 4);
         dateTimePicker1.Name = "dateTimePicker1";
-        dateTimePicker1.Size = new System.Drawing.Size(127, 23);
+        dateTimePicker1.Size = new Size(145, 27);
         dateTimePicker1.TabIndex = 11;
         dateTimePicker1.Visible = false;
         // 
+        // button1
+        // 
+        button1.Location = new Point(0, 0);
+        button1.Name = "button1";
+        button1.Size = new Size(94, 29);
+        button1.TabIndex = 12;
+        button1.Text = "button1";
+        button1.UseVisualStyleBackColor = true;
+        // 
+        // btnCancel
+        // 
+        btnCancel.Location = new Point(6, 404);
+        btnCancel.Name = "btnCancel";
+        btnCancel.Size = new Size(132, 44);
+        btnCancel.TabIndex = 13;
+        btnCancel.Text = "Cancel";
+        btnCancel.UseVisualStyleBackColor = true;
+        btnCancel.Visible = false;
+        btnCancel.Click += btnCancel_Click;
+        // 
         // ClientForm
         // 
-        AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        BackColor = System.Drawing.SystemColors.Control;
-        ClientSize = new System.Drawing.Size(800, 450);
-        Controls.Add(dateTimePicker1);
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        BackColor = SystemColors.Control;
+        ClientSize = new Size(914, 600);
         Controls.Add(btnCancel);
+        Controls.Add(button1);
+        Controls.Add(dateTimePicker1);
         Controls.Add(btnView);
         Controls.Add(labelUser);
         Controls.Add(labelRes);
@@ -149,15 +165,15 @@ partial class ClientForm
         Controls.Add(comboBoxSport);
         Controls.Add(listboxFields);
         Controls.Add(labelLoad);
-        Location = new System.Drawing.Point(15, 15);
+        Location = new Point(15, 15);
+        Margin = new Padding(3, 4, 3, 4);
+        Name = "ClientForm";
         Text = "Client";
         Click += ClientForm_Click;
         ResumeLayout(false);
     }
 
     private System.Windows.Forms.DateTimePicker dateTimePicker1;
-
-    private System.Windows.Forms.Button btnCancel;
 
     private System.Windows.Forms.Button btnView;
 
@@ -172,4 +188,7 @@ partial class ClientForm
     private System.Windows.Forms.TextBox textBox3;
 
     #endregion
+
+    private Button button1;
+    private Button btnCancel;
 }

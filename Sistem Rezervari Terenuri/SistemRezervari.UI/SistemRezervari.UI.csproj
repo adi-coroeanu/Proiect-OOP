@@ -45,6 +45,9 @@
       </Content>
       <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\terenuri.json" />
       <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\utilizatori.json" />
+      <Content Include="Data\FisiereJson\rezervari.json" />
+      <Content Include="Data\FisiereJson\terenuri.json" />
+      <Content Include="Data\FisiereJson\utilizatori.json" />
       <Content Update="Data\FisiereJson\rezervari.json">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </Content>
@@ -55,6 +58,9 @@
         <Link>Data\FisiereJson\%(Filename)%(Extension)</Link>
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Remove="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\rezervari.json" />
+      <None Remove="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\terenuri.json" />
+      <None Remove="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\utilizatori.json" />
       <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>

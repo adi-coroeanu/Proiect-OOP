@@ -17,8 +17,8 @@
     "Id": "b3c4d5e6-f7a8-4c9d-0e1f-2a3b4c5d6e7f",
     "TerenId": "bc7f62e8-0b5c-4d3e-9f1a-2c8b9d3e4f5a",
     "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
-    "DataInceput": "2026-01-13T10:00:00",
-    "DataSfarsit": "2026-01-13T11:00:00"
+    "DataInceput": "2026-01-13T11:00:00",
+    "DataSfarsit": "2026-01-13T12:00:00"
   },
   {
     "Id": "c4d5e6f7-a8b9-4d0e-1f2a-3b4c5d6e7f8a",
@@ -26,5 +26,40 @@
     "UtilizatorId": "330e8400-e29b-11d4-a716-446655440000",
     "DataInceput": "2026-01-14T14:00:00",
     "DataSfarsit": "2026-01-14T15:00:00"
+  },
+  {
+    "Id": "d2f667b6-04b5-483f-8e69-2c51461f80b7",
+    "TerenId": "3fa7a8ff-c707-449b-9bf6-3f597f415887",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-14T20:00:00",
+    "DataSfarsit": "2026-01-14T21:00:00"
+  },
+  {
+    "Id": "3f12b244-38fb-4033-8083-2a4fe6563d43",
+    "TerenId": "3fa7a8ff-c707-449b-9bf6-3f597f415887",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-16T10:00:00",
+    "DataSfarsit": "2026-01-16T11:00:00"
+  },
+  {
+    "Id": "78666439-5226-45bf-9028-8faedcc8860d",
+    "TerenId": "550e8400-e29b-41d4-a716-446655440000",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-14T17:00:00",
+    "DataSfarsit": "2026-01-14T18:00:00"
+  },
+  {
+    "Id": "fcfd889f-993f-42a9-8b36-9c28f9e4c388",
+    "TerenId": "990e8400-e29b-41d4-a716-446655440000",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-27T21:00:00",
+    "DataSfarsit": "2026-01-27T22:00:00"
+  },
+  {
+    "Id": "b4debef0-1d72-46d5-b8a9-3adb13bfc4ea",
+    "TerenId": "550e8400-e29b-41d4-a716-446655440000",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-14T11:00:00",
+    "DataSfarsit": "2026-01-14T12:00:00"
   }
 ]

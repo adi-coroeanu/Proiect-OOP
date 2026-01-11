@@ -31,24 +31,38 @@ partial class ClientResForm
     /// </summary>
     private void InitializeComponent()
     {
-        listBoxAvailable = new System.Windows.Forms.ListBox();
+        listBoxAvailable = new ListBox();
+        btnReservation = new Button();
         SuspendLayout();
         // 
         // listBoxAvailable
         // 
         listBoxAvailable.FormattingEnabled = true;
-        listBoxAvailable.ItemHeight = 15;
-        listBoxAvailable.Location = new System.Drawing.Point(35, 62);
+        listBoxAvailable.Location = new Point(40, 83);
+        listBoxAvailable.Margin = new Padding(3, 4, 3, 4);
         listBoxAvailable.Name = "listBoxAvailable";
-        listBoxAvailable.Size = new System.Drawing.Size(244, 289);
+        listBoxAvailable.Size = new Size(278, 384);
         listBoxAvailable.TabIndex = 0;
+        // 
+        // btnReservation
+        // 
+        btnReservation.Location = new Point(384, 218);
+        btnReservation.Name = "btnReservation";
+        btnReservation.Size = new Size(175, 63);
+        btnReservation.TabIndex = 1;
+        btnReservation.Text = "Make a reservation";
+        btnReservation.UseVisualStyleBackColor = true;
+        btnReservation.Click += btnReservation_Click;
         // 
         // ClientResForm
         // 
-        AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        ClientSize = new System.Drawing.Size(800, 450);
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        ClientSize = new Size(914, 600);
+        Controls.Add(btnReservation);
         Controls.Add(listBoxAvailable);
+        Margin = new Padding(3, 4, 3, 4);
+        Name = "ClientResForm";
         Text = "ClientResForm";
         ResumeLayout(false);
     }
@@ -56,4 +70,6 @@ partial class ClientResForm
     private System.Windows.Forms.ListBox listBoxAvailable;
 
     #endregion
+
+    private Button btnReservation;
 }
