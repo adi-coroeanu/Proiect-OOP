@@ -41,4 +41,19 @@ public class ClientReservationService : IClientReservationService
         _logger.LogInformation("New reservation created: {ReservationId} for user {UserId} on field {FieldId} from {StartDate} to {EndDate}",
             newReservation.Id, userId, fieldId, startDate, endDate);
     }
+
+    public void DeleteReservation(Guid reservationId)
+    {
+        var reservationToRemove = _reservationList.Find(r => r.Id == reservationId);
+        if (reservationToRemove != null)
+        {
+            _reservationList.Remove(reservationToRemove);
+            _repository.SalveazaRezervari(_reservationList);
+            _logger.LogInformation("Reservation {ReservationId} deleted successfully.", reservationId);
+        }
+        else
+        {
+            _logger.LogWarning("Reservation {ReservationId} not found. Deletion failed.", reservationId);
+        }
+    }
 }

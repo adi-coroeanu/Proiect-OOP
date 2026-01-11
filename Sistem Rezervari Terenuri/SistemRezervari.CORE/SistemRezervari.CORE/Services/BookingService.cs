@@ -41,12 +41,15 @@ public class BookingService : IBookingService
         return _fieldCatalogService.GetAvailableSlots(fieldId, date);
     }
     
-
     public void MakeReservation(Guid fieldId, Guid userId, DateTime startDate)
     {
         _clientReservationService.MakeReservation(fieldId, userId, startDate);
     }
-
+    
+    public void DeleteReservation(Guid reservationId)
+    {
+        _clientReservationService.DeleteReservation(reservationId);
+    }
     public List<Rezervare>? GetUserReservations(Guid clientId)
     {
         return _clientDashboardService.GetUserReservations(clientId);
