@@ -39,9 +39,18 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\rezervari.json" />
+      <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\rezervari.json">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </Content>
       <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\terenuri.json" />
       <Content Include="bin\Debug\net8.0-windows\Data\FisiereJson\utilizatori.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\SistemRezervari.CORE\SistemRezervari.CORE\Data\FisiereJson\*.json">
+        <Link>Data\FisiereJson\%(Filename)%(Extension)</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

@@ -22,15 +22,29 @@ public class JsonRepository : IFileRepository
     {
         _logger = logger;
 
-        // Construim căile folosind Path.Combine pentru a fi siguri că formatul e corect (FisiereJson/fisier.json)
-        _directoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "FisiereJson");
+        // Folosim direct BaseDirectory - aici vor fi copiate fișierele
+        string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+        // Construim căile către fișierele JSON
+        _directoryPath = Path.Combine(baseDir, "Data", "FisiereJson");
         _pathTerenuri = Path.Combine(_directoryPath, "terenuri.json");
         _pathRezervari = Path.Combine(_directoryPath, "rezervari.json");
         _pathUtilizatori = Path.Combine(_directoryPath, "utilizatori.json");
 
-       
+        // Creează directorul dacă nu există (pentru salvări ulterioare)
+        if (!Directory.Exists(_directoryPath))
+        {
+            Directory.CreateDirectory(_directoryPath);
+        }
+
+        // Log pentru debugging
+        _logger.LogInformation("BaseDirectory: {BaseDir}", baseDir);
+        _logger.LogInformation("Directory JSON: {DirectoryPath}", _directoryPath);
+        _logger.LogInformation("Terenuri: {Path} - Exists: {Exists}", _pathTerenuri, File.Exists(_pathTerenuri));
+        _logger.LogInformation("Rezervari: {Path} - Exists: {Exists}", _pathRezervari, File.Exists(_pathRezervari));
+        _logger.LogInformation("Utilizatori: {Path} - Exists: {Exists}", _pathUtilizatori, File.Exists(_pathUtilizatori));
     }
-    
+
 
     // --- IMPLEMENTARE PENTRU TERENURI ---
 

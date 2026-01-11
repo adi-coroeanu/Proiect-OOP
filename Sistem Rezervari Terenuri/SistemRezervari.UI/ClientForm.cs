@@ -25,12 +25,13 @@ public partial class ClientForm : Form
 
     private void UpdateReservations()
     {
+
+        listBoxRes.Items.Clear();
         foreach (var var in _bookingService.GetUserReservations(_user.Id))
         {
             string date = var.DataInceput.ToShortDateString();
             string start = var.DataInceput.ToShortTimeString();
             string end = var.DataSfarsit.ToShortTimeString();
-            listBoxRes.Items.Clear();
             listBoxRes.Items.Add($"{date} {start} -- {end}");
         }
     }
