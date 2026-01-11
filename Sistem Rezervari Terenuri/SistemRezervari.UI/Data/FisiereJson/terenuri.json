@@ -1,0 +1,72 @@
+[
+  {
+    "Id": "550e8400-e29b-41d4-a716-446655440000",
+    "Nume": "Arena Central Tenis",
+    "TipSport": "Tenis",
+    "Capacitate": 2,
+    "program_de_functionare": "08:00-22:00",
+    "intervale_indisponibile": "12:00-13:00, 18:00-19:00",
+    "nr_max_rezervari": 2,
+    "durata_standard": 60
+  },
+  {
+    "Id": "990e8400-e29b-41d4-a716-446655440000",
+    "Nume": "Teren Sintetic Fotbal",
+    "TipSport": "Fotbal",
+    "Capacitate": 100,
+    "program_de_functionare": "10:00-23:00",
+    "intervale_indisponibile": "none",
+    "nr_max_rezervari": 2,
+    "durata_standard": 60
+  },
+  {
+    "Id": "bc7f62e8-0b5c-4d3e-9f1a-2c8b9d3e4f5a",
+    "Nume": "Sala Baschet",
+    "TipSport": "Baschet",
+    "Capacitate": 10,
+    "program_de_functionare": "09:00-21:00",
+    "intervale_indisponibile": "15:00-16:00",
+    "nr_max_rezervari": 2,
+    "durata_standard": 60
+  },
+  {
+    "Id": "3fa7a8ff-c707-449b-9bf6-3f597f415887",
+    "Nume": "Arena Nationala",
+    "TipSport": "Fotbal",
+    "Capacitate": 50000,
+    "program_de_functionare": "08:00-22:00",
+    "intervale_indisponibile": "12:00-13:00,19:00-20:00",
+    "nr_max_rezervari": 1,
+    "durata_standard": 60
+  },
+  {
+    "Id": "ea4035c4-0188-4ff0-9721-0053cd26d6b1",
+    "Nume": "Arena Francisc von Neumann",
+    "TipSport": "Fotbal",
+    "Capacitate": 22,
+    "program_de_functionare": "10:00-22:00",
+    "intervale_indisponibile": "12:00-14:00",
+    "nr_max_rezervari": 2,
+    "durata_standard": 90
+  },
+  {
+    "Id": "563ad34d-5e34-4e91-b93e-52250f936e6e",
+    "Nume": "Arena Adi",
+    "TipSport": "Fotbal",
+    "Capacitate": 100,
+    "program_de_functionare": "10:00-22:00",
+    "intervale_indisponibile": "none",
+    "nr_max_rezervari": 10,
+    "durata_standard": 45
+  },
+  {
+    "Id": "66bbc0be-fd08-473c-b3f3-4a436d2b9db7",
+    "Nume": "Arena C#",
+    "TipSport": "Tenis",
+    "Capacitate": 10,
+    "program_de_functionare": "10:00-20:00",
+    "intervale_indisponibile": "",
+    "nr_max_rezervari": 5,
+    "durata_standard": 90
+  }
+]
