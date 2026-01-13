@@ -33,11 +33,12 @@ public partial class ClientResForm : Form
             return;
         }
 
-        // Parse date
-        string[] s = _date.Split('/');
-        if (!int.TryParse(s[2], out int year) ||
+        // Parse date in format yyyy-MM-dd
+        string[] s = _date.Split('-');
+        if (s.Length != 3 ||
+            !int.TryParse(s[0], out int year) ||
             !int.TryParse(s[1], out int month) ||
-            !int.TryParse(s[0], out int day))
+            !int.TryParse(s[2], out int day))
         {
             MessageBox.Show("Invalid date format.", "Error", 
                 MessageBoxButtons.OK, MessageBoxIcon.Error);

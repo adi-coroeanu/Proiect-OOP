@@ -120,7 +120,7 @@ public class FieldCatalogService : IFieldCatalogService
     }
     
     private DateOnly String2DateOnly(string date)
-        => DateOnly.ParseExact(date, "dd/MM/yyyy", null);
+        => DateOnly.ParseExact(date, "yyyy-MM-dd", null);
     
     private TimeInterval Period2TimeInterval(string period)
     {

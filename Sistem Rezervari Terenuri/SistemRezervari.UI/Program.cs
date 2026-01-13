@@ -18,7 +18,7 @@ static class Program
         var host = Host.CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {
-                // Folosim FakeService pana termina colegii
+                
                 services.AddTransient<IAdministrareService, AdministrareService>();
                 services.AddTransient<IAutentificareService, AutentificareService>();
                 services.AddTransient<IBookingService, BookingService>();

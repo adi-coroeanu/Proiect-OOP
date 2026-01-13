@@ -54,5 +54,26 @@
     "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
     "DataInceput": "2026-01-14T11:00:00",
     "DataSfarsit": "2026-01-14T12:00:00"
+  },
+  {
+    "Id": "17dafc24-edc5-4274-b6c6-d45e52871f91",
+    "TerenId": "d733a81a-e4ca-4294-9fc1-68c3c054480b",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-17T17:00:00",
+    "DataSfarsit": "2026-01-17T18:00:00"
+  },
+  {
+    "Id": "a4e2803d-98fd-49d5-ad45-e4df92c18388",
+    "TerenId": "d733a81a-e4ca-4294-9fc1-68c3c054480b",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-12T16:00:00",
+    "DataSfarsit": "2026-01-12T17:00:00"
+  },
+  {
+    "Id": "bf76232e-47da-4cba-9a2d-a496f3fbab74",
+    "TerenId": "3fa7a8ff-c707-449b-9bf6-3f597f415887",
+    "UtilizatorId": "220e8400-e29b-11d4-a716-446655440000",
+    "DataInceput": "2026-01-17T18:00:00",
+    "DataSfarsit": "2026-01-17T19:00:00"
   }
 ]

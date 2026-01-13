@@ -27,7 +27,7 @@
     "program_de_functionare": "09:00-21:00",
     "intervale_indisponibile": "15:00-16:00",
     "nr_max_rezervari": 2,
-    "durata_standard": 60
+    "durata_standard": 50
   },
   {
     "Id": "3fa7a8ff-c707-449b-9bf6-3f597f415887",

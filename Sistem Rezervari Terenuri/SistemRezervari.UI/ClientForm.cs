@@ -101,7 +101,8 @@ public partial class ClientForm : Form
     private void btnView_Click(object sender, EventArgs e)
     {
         var resform = _serviceProvider.GetRequiredService<ClientResForm>();
-        string date = dateTimePicker1.Value.ToShortDateString();
+        // Use invariant format: yyyy-MM-dd
+        string date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
         Guid id =
             _bookingService.SearchFieldsBySport(comboBoxSport.SelectedItem.ToString())[listboxFields.SelectedIndex].Id;
 

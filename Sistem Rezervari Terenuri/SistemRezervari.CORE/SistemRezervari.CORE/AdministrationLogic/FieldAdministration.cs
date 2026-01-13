@@ -29,7 +29,7 @@ public class FieldAdministration : IFieldAdministration
         if(!Regex.IsMatch(program, pattern))
             throw new Exception("Open from/to error: The format must be HH:mm-HH:mm (ex: 08:00-22:00).");
         foreach (string intervale in interv)
-        {
+        {//11:00-12:00
             if (intervale.ToLower() == "none") 
                 continue;
             if (!Regex.IsMatch(intervale, pattern))
